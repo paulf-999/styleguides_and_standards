@@ -4,18 +4,18 @@ This document describes the use of the [`Gitflow` workflow](https://www.gitkrake
 
 
 ## Contents
-* Summary
+* Overview
     * Primary branches
     * Supporting branches
 * Overall flow of Gitflow
 * Credits
 ---
 
-## Summary
+## Overview
 
 Gitflow is a Git workflow that helps with continuous delivery and implementing DevOps practices.
 
-### Primary branches
+## Primary branches
 
 It consists of 2 main (primary) branches, each of which exist indefinitely:
 
@@ -26,7 +26,7 @@ It consists of 2 main (primary) branches, each of which exist indefinitely:
 
 ![alt text](img/main-and-develop-branches.jpg "Main and develop branches")
 
-### Supporting branches
+## Supporting branches
 
 During the development cycle, a variety of supporting branches are used:
 
