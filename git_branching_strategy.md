@@ -1,6 +1,6 @@
 # Git branching strategy
 
-This document describes the use of the [`Gitflow` workflow](https://www.gitkraken.com/learn/git/git-flow) as the Git branching strategy.
+This document describes the use of the [`Gitflow` workflow](https://www.gitkraken.com/learn/git/git-flow) as a Git branching strategy.
 
 
 ## Contents
@@ -15,9 +15,9 @@ This document describes the use of the [`Gitflow` workflow](https://www.gitkrake
 
 Gitflow is a Git workflow that helps with continuous delivery and implementing DevOps practices.
 
-#### Primary branches
+### Primary branches
 
-It consists of 2 main (primary) branches, each of which exist infinitely:
+It consists of 2 main (primary) branches, each of which exist indefinitely:
 
 | Branch | Description |
 | -------| ------------|
@@ -26,7 +26,7 @@ It consists of 2 main (primary) branches, each of which exist infinitely:
 
 ![alt text](img/main-and-develop-branches.jpg "Main and develop branches")
 
-#### Supporting branches
+### Supporting branches
 
 During the development cycle, a variety of supporting branches are used:
 
@@ -53,4 +53,4 @@ During the development cycle, a variety of supporting branches are used:
 
 ## Credits
 
-This `README` captures the main points from [Atlassian](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) and [Gitkraken's](https://www.gitkraken.com/learn/git/git-flow) documentation
+This `README` captures the main points from [Atlassian](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) and [Gitkraken's](https://www.gitkraken.com/learn/git/git-flow) documentation.
