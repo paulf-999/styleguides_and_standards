@@ -11,7 +11,7 @@ This document describes the use of the [`Gitflow` workflow](https://www.gitkrake
 * Credits
 ---
 
-## 1. High-level summary
+## High-level summary
 
 Gitflow is a Git workflow that helps with continuous delivery and implementing DevOps practices.
 
@@ -24,8 +24,7 @@ It consists of 2 main (primary) branches, each of which exist infinitely:
 | `main` | * Contains production code<br/>* All development code will ultimately strive to be merged into `main` |
 | `develop` | * Contains pre-production code<br/>* When a `feature` [branch] is finished, it is merged into `develop` |
 
-(img/main-and-develop-branches.jpg)
-
+![alt text](img/main-and-develop-branches.jpg "Main and develop branches")
 **Supporting branches**
 
 During the development cycle, a variety of supporting branches are used:
@@ -37,10 +36,11 @@ During the development cycle, a variety of supporting branches are used:
 | `hotfix_*` | * hotfix branches are necessary to act immediately upon an undesired status of the `main` branch<br/>* May branch off from `main` and must merge into `main` and `develop` | `hotfix_<name_of_fix>` |
 
 (img/supporting-branches.jpg)
+![alt text](img/supporting-branches.jpg "Supporting branches")
 
 ---
 
-### Overall flow of `Gitflow`
+## Overall flow of `Gitflow`
 
 1. A `develop` branch is created from `main`
 2. A `release` branch is created from `develop`
