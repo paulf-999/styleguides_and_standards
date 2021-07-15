@@ -155,7 +155,7 @@ Consider reading the [Google Python style guide](https://google.github.io/styleg
 #### 3.1.1.	VSCode Extensions
 Install the following VSCode extensions (plugins):
 * Docker
-* Bracket Pair Colorizer 2’
+* Bracket Pair Colorizer 2
 
 #### 3.1.2.	Linting, Security and Autoformatting Plugin Settings
 * Within VSCode, go to Settings -> Open Settings (JSON) – Icon Top Right
