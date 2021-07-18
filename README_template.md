@@ -5,6 +5,7 @@ Simple one-line overview of use / purpose of the project.
 ---
 
 ## Contents
+
 1. High-level summary
 2. Getting started
     * Prerequisites
@@ -62,10 +63,10 @@ commands to run if specific messages are encountered
 
 ## 4. Folder contents (if applicable)
 
-| Folder                    | Description                                                                                       |
-| --------------------------| --------------------------------------------------------------------------------------------------|
-| folder            | Contains files related to... |
-| folder            | Contains files related to... |
+| Folder | Description                  |
+| -------| -----------------------------|
+| folder | Contains files related to... |
+| folder | Contains files related to... |
 
 ---
 
