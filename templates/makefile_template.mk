@@ -1,20 +1,16 @@
 SHELL = /bin/sh
 
-example_var = ${CURDIR}/src
+# default: deps install [X, Y, Z...] clean
 
-all: run
+installations: deps install clean
 
-run: link
-    # Instructions for run
+$(eval current_dir=$(shell pwd))
 
-link: lib
-    # Instructions for link
+deps:
+    $(info [+] Download the relevant dependencies)
 
-lib: compile
-    # Instructions for make the lib
+install:
+    $(info [+] Install the relevant dependencies)
 
-compile:
-    # Instructions for compilation
-
-example-new-target:
-	# Example new target
+clean:
+    $(info [+] Remove any redundant files, e.g. downloadsß)
