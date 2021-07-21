@@ -1,9 +1,11 @@
-| Plugin | Good vs nice to have | Usage |
-| -------| -------------------- |
-| SQLFluff | Good |
-| YAML | Good |
-| Prettify JSON |  |
-| Bracket Pair Colorizer 2 |  |
-| Code Spell Checker |  |
-| TODO Highlight | Y |
-| vscode-icons | Y |
+SQLFluff
+YAML
+Prettify JSON
+Bracket Pair Colorizer 2
+Path Intellisense
+Prettier
+Auto Close Tag
+Code Spell Checker
+Change Case
+Tabnine
+GitLens
