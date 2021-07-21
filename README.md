@@ -1,3 +1,3 @@
 ## styleguides_and_standards
 
-Style guides and standards I've collated over time.
+Style guides, standards and templates I've collated over time.
