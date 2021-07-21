@@ -1,0 +1,15 @@
+airflow-dbt
+apache-airflow
+awscli
+boto3
+dbt
+flake8
+Jinja2
+pandas
+pymssql
+pyodbc
+pyodbc
+snowchange
+snowflake-connector-python
+sqlfluff
+wget
