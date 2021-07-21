@@ -32,10 +32,10 @@ Simple one-line overview of use / purpose of the project.
 
 <Describe any prerequisites libraries / configuration / other needed for the project, e.g.:>
 
-> *Before you begin, ensure you have met the following requirements:*
->
->    * *You have installed the latest version of <coding_language/dependency/requirement_1>*
->    * *You have a <Mac/Windows>*
+Before you begin, ensure you have met the following requirements:
+
+* You have installed the latest version of <coding_language/dependency/requirement_1>
+* You have a <Mac/Windows>
 
 ### Installation
 
