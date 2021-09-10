@@ -24,7 +24,7 @@ It consists of 2 main (primary) branches, each of which exist indefinitely:
 | `main` | * Contains production code<br/>* All development code will ultimately strive to be merged into `main` |
 | `develop` | * Contains pre-production code<br/>* When a `feature` [branch] is finished, it is merged into `develop` |
 
-![alt text](../img/main-and-develop-branches.jpg "Main and develop branches")
+![alt text](img/main-and-develop-branches.jpg "Main and develop branches")
 
 ## Supporting branches
 
@@ -36,7 +36,7 @@ During the development cycle, a variety of supporting branches are used:
 | `release_*` | * Support preparation of a new production release<br/>* They allow many minor bug to be fixed and preparation of metadata for a release<br/>* May branch off from `develop` and must merge into `main` and `develop` | `release_<name_of_release>` |
 | `hotfix_*` | * hotfix branches are necessary to act immediately upon an undesired status of the `main` branch<br/>* May branch off from `main` and must merge into `main` and `develop` | `hotfix_<name_of_fix>` |
 
-![alt text](../img/supporting-branches.jpg "Supporting branches")
+![alt text](img/supporting-branches.jpg "Supporting branches")
 
 ---
 
