@@ -1,0 +1,14 @@
+[sqlfluff]
+dialect = snowflake
+[sqlfluff:rules:L010] # Inconsistent capitalisation of keywords.
+capitalisation_policy = upper
+[sqlfluff:rules:L019] # Commas should not have whitespace directly before them. Unless it’s an indent
+comma_style = leading
+[sqlfluff:rules:L028] # References should be consistent in statements with a single table.
+single_table_references = unqualified
+[sqlfluff:rules:L030] # Inconsistent capitalisation of function names.
+capitalisation_policy = upper
+[sqlfluff:rules:L038] # trailing commas within select clauses
+select_clause_trailing_comma = forbid
+[sqlfluff:rules:L040] # Inconsistent capitalisation of boolean/null literal.
+capitalisation_policy = upper
