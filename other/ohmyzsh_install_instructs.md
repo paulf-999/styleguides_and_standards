@@ -11,7 +11,7 @@ ohmyzsh:
 Visual Studio Code:
 `Open File → Preferences → Settings, enter terminal.integrated.fontFamily in the search box and set the value to MesloLGS NF.`
 
-2.3. Install the Powerlevel10k plugin manager (using homebrew):
+2.2. Install the Powerlevel10k plugin manager (using homebrew):
 
 ```
 brew install romkatv/powerlevel10k/powerlevel10k
