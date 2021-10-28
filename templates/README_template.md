@@ -1,3 +1,7 @@
+# README template
+
+---
+
 # Project Title
 
 Simple one-line overview of use / purpose of the project.
