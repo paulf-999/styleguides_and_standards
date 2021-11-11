@@ -131,6 +131,7 @@ HeapDict==1.0.1
 hologram==0.0.10
 httplib2==0.17.4
 humanize==3.2.0
+humanfriendly
 idna==2.10
 ijson==2.6.1
 importlib-metadata==1.7.0

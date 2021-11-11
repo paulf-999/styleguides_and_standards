@@ -5,6 +5,8 @@ black
 boto3
 dbt
 flake8
+humanfriendly
+humanize
 Jinja2
 numpy
 pandas
