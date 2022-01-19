@@ -22,7 +22,6 @@ deps:
 .PHONY: install
 install:
 	$(info [+] Install the relevant dependencies)
-	great_expectations init
 
 .PHONY: clean
 clean:
