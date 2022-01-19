@@ -6,22 +6,16 @@
 
 ## :hammer_and_wrench: Type of change
 
-<br/>
-
 
 Please delete the option that isn't relevant:
 
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
 
-<br/>
-
 ---
 
 ## :guardsman: Merge Request Details
 Please populate the details below:
-<br/>
-
 
 |   | Item | Details |
 | - |------| --------|
@@ -32,11 +26,7 @@ Please populate the details below:
 
 ---
 
-<br/>
-
 ## :dart: Checklist
-
-<br/>
 
 - [ ] Issue number: I have captured the issue number
 
