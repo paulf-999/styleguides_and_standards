@@ -1,18 +1,34 @@
-# Description
+## :pencil2: Description
+
+<br/>
 
 [Summary of the change here]
 
-## Type of change
+<br/>
+
+---
+
+## :hammer_and_wrench: Type of change
+
+<br/>
+
 
 Please delete the option that isn't relevant:
 
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
 
-## Merge request details
+<br/>
 
-| | Item | Details |
-| - |--| ------------|
+---
+
+## :guardsman: Merge Request Details
+Please populate the details below:
+<br/>
+
+
+|   | Item | Details |
+| - |------| --------|
 | 1 | Issue Number | [Link to Azure DevOps Issue here] |
 | 2 | Execution runtime | [execution runtime here] |
 | 3 | Target table row count | [row count here] |
@@ -20,14 +36,18 @@ Please delete the option that isn't relevant:
 
 ---
 
-## Checklist
+<br/>
 
-[ ] Issue number: I have captured the issue number
+## :dart: Checklist
 
-[ ] Execution runtime: I have captured the execution runtime
+<br/>
 
-[ ] SQL file uploaded: I've stored the original SQL as a separate .sql file, within the DAG folder
+- [ ] Issue number: I have captured the issue number
 
-[ ] `SQLFluff`: I've linted my SQL code using SQLFluff
+- [ ] Execution runtime: I have captured the execution runtime
 
-[ ] `pylint-airflow`: My Airflow DAG has been linted using pylint-airflow
+- [ ] SQL file uploaded: I've stored the original SQL as a separate .sql file, within the DAG folder
+
+- [ ] `SQLFluff`: I've linted my SQL code using SQLFluff
+
+- [ ] `pylint-airflow`: My Airflow DAG has been linted using pylint-airflow
