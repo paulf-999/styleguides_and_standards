@@ -1,10 +1,6 @@
 ## :pencil2: Description
 
-<br/>
-
 [Summary of the change here]
-
-<br/>
 
 ---
 
