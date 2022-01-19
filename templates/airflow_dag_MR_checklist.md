@@ -4,7 +4,7 @@
 
 ---
 
-## :hammer_and_wrench: Type of change
+## :hammer_and_wrench: Type of Change
 
 
 Please delete the option that isn't relevant:
@@ -19,9 +19,9 @@ Please populate the details below:
 
 |   | Item | Details |
 | - |------| --------|
-| 1 | Issue Number | [Link to Azure DevOps Issue here] |
-| 2 | Execution runtime | [execution runtime here] |
-| 3 | Target table row count | [row count here] |
+| 1 | Issue Number | [Link to issue number here] |
+| 2 | Execution runtime | [Execution runtime here] |
+| 3 | Target table row count | [Row count here] |
 | 4 | Snowflake warehouse size used | [MAX WH size here] |
 
 ---
