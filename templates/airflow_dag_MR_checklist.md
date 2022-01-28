@@ -32,6 +32,12 @@ Please populate the details below:
 
 - [ ] Execution runtime: I have captured the execution runtime
 
+- [ ] Timezone-aware: I've developed my DAG to make use of the local Timezone (i.e., using the Pendulum library)
+
+- [ ] Runtime metadata: My DAG posts runtime statistics into Snowflake by calling the shared Airflow DAG, 'get_dag_runtime_stats'
+
+- [ ] Tag (category): I've assigned a tag to my DAG, to help categorise it
+
 - [ ] SQL file uploaded: I've stored the original SQL as a separate .sql file, within the DAG folder
 
 - [ ] `SQLFluff`: I've linted my SQL code using SQLFluff
