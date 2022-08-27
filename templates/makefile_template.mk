@@ -24,5 +24,5 @@ clean:
 	$(info [+] Remove any redundant files, e.g. downloads)
 
 get_ips:
-    @# Target: 'get_ips'. Get input args from config.json
-    #$(eval ENV=$(shell jq -r '.GeneralParameters.Env' ${CONFIG_FILE}))
+	@# Target: 'get_ips'. Get input args from config.json
+	#$(eval ENV=$(shell jq -r '.GeneralParameters.Env' ${CONFIG_FILE}))
