@@ -6,7 +6,7 @@ SHELL = /bin/sh
 
 .PHONY = installations deps install clean get_ips
 
-GITLAB_PROJECT_NAME := cicd_gitlab_eg
+CICD_job_name := name_of_cicd_job_here
 
 installations: deps install clean
 
@@ -17,14 +17,5 @@ deps:
 install:
 	$(info [+] Install the relevant dependencies)
 	gitlab-runner register
-
-clean:
-	$(info [+] Remove any redundant files, e.g. downloads)
-
-get_ips:
-    @# Target: 'get_ips'. Get input args from config.json
-    #$(eval ENV=$(shell jq -r '.GeneralParameters.Env' ${CONFIG_FILE}))
-	echo "test"
-
 exec_locally:
-	gitlab-runner exec shell ${GITLAB_PROJECT_NAME}
+	gitlab-runner exec shell ${CICD_job_name}
