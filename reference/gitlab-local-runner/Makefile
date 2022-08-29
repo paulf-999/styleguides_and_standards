@@ -4,7 +4,7 @@ SHELL = /bin/sh
 
 .EXPORT_ALL_VARIABLES:
 
-.PHONY = installations deps install clean get_ips
+.PHONY = installations deps install clean
 
 CICD_job_name := name_of_cicd_job_here
 
