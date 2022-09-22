@@ -6,11 +6,7 @@ This is a stripped back adaptation of the following [SQL style guide](https://ww
 
 1. General
 2. Naming conventions
-    * General do's and don'ts
 3. Query syntax
-    * Commas
-    * Reserved words
-    * White space
 4. Ordering
 5. Comments
 
@@ -18,57 +14,39 @@ This is a stripped back adaptation of the following [SQL style guide](https://ww
 
 ## 1. General
 
-* Indentation - indents should be four spaces, except for predicates, which should line up with the `WHERE` keyword.
-* Line length - lines of SQL should be no longer than 80 characters
+* Indentation: indents should be four spaces, except for predicates, which should line up with the `WHERE` keyword.
+* Line length: lines of SQL should be no longer than 80 characters
 
-## 3. Naming conventions
+## 2. Naming conventions
 
 ### General do's and don'ts
 
-#### Do
+*Do*
 
 * Always use the singular name and avoid plurals
-* Use underscores where you would naturally include a space in the name (first name becomes first_name)
-* Only use letters, numbers and underscores in names
-* Names must begin with a letter and may not end with an underscore
-* Always use lowercase except where it may make sense not to such as proper nouns
+* Use `snake_case`, i.e.:
+    * Only use letters, numbers and underscores in names
+    * Use underscores where you would naturally include a space in the name (e.g., `first name` would become `first_name`)
+    * Names must begin with a letter and may not end with an underscore
+* **Aliasing**: when aliasing, always use the `AS` keyword
 
-#### Avoid
+*Avoid*
 
-* CamelCase - it is difficult to scan quickly
-* Plurals - use the more natural collective term where possible instead. For example, staff instead of employees or people instead of individuals.
-* Abbreviations. If you have to use them, make sure they are commonly understood
-
-### Tables
-
-Do not prefix with tbl or any other such descriptive prefix.
-
-### Columns
-
-Where possible avoid simply using id as the primary identifier for the table.
-
-### Aliasing
-
-Always use the AS keyword.
+* `CamelCase`: it is difficult to scan quickly
+* Plurals: use the more natural collective term where possible instead.
+    * For example, staff instead of employees or people instead of individuals.
+* Abbreviations: if you have to use them, make sure they are commonly understood
+* Prefixing table names with `tbl` or any other such descriptive prefix.
+* For columns - avoid simply using `id` as the primary identifier for the table
 
 ---
 
 ## 3. Query syntax
 
-### i. Commas
-
-* Use trailing commas
-
-### ii. Reserved words
-
-Always use uppercase for reserved keywords like SELECT and WHERE.
-
-### iii. White space
-
-#### Spaces
-
-Spaces should be used to line up the code so that the reserved keywords are all aligned and end on the same character boundary.
-Notice that SELECT, FROM, etc. are all right aligned while the actual column names and implementation specific details are left aligned.
+* **Commas**: Use trailing commas
+* **Reserved words**: Always use uppercase for reserved keywords like `SELECT` and `WHERE`.
+* Spaces: spaces should be used to line up the code so that the reserved keywords are all aligned and end on the same character boundary.
+Notice that `SELECT`, `FROM`, etc. are all right aligned while the actual column names and implementation specific details are left aligned.
 
     SELECT      f.species_name,
                 AVG(f.height) AS average_height, AVG(f.diameter)
@@ -78,15 +56,12 @@ Notice that SELECT, FROM, etc. are all right aligned while the actual column nam
         OR      f.species_name = 'Wattle'
     GROUP BY    f.species_name, f.observation_date
 
-#### Line Spacing
-
-Always include newlines:
-
-* Before AND or OR
-* After semicolons to separate queries for easier reading
-* After each keyword definition
-* After a comma when separating multiple columns into logical groups
-* To separate code into related sections, which helps to ease the readability of large chunks of code
+* Line Spacing: always include newlines in the following scenarios:
+    * Before `AND` or `OR`
+    * After semicolons to separate queries for easier reading
+    * After each keyword definition
+    * After a comma when separating multiple columns into logical groups
+    * To separate code into related sections, which helps to ease the readability of large chunks of code
 
 Keeping all the keywords aligned to the right hand side and the values left aligned creates a uniform gap down the middle of query. It makes it much easier to scan the query definition over quickly too.
 
@@ -98,25 +73,22 @@ Keeping all the keywords aligned to the right hand side and the values left alig
 
 #### Joins
 
-* Joins should be indented and placed on a new line.
+* Joins should be indented and placed on a new line:
 
-    ```
-    SELECT  c.last_name
-    FROM    customers AS c
-        INNER JOIN bikes AS b
-        ON r.bike_vin_num = b.vin_num
-        AND b.engine_tally > 2
-    ```
+        SELECT  c.last_name
+        FROM    customers AS c
+            INNER JOIN bikes AS b
+            ON r.bike_vin_num = b.vin_num
+            AND b.engine_tally > 2
 
-* Joining multiple tables - if joining two or more tables, _always_ prefix your column names with the table alias. If only selecting from one table, prefixes are not needed.
-* Explicit joins - be explicit about your join (i.e. write `inner join` instead of `join`). `left joins` are normally the most useful, `right joins` often indicate that you should change which table you select `from` and which one you `join` to.
-* Avoid table aliases in join conditions - especially initialisms. It's harder to understand what the table called "c" is compared to "customers".
-* `UNION ALL` - aim to use `UNION ALL` as opposed to `UNION` [*](http://docs.aws.amazon.com/redshift/latest/dg/c_example_unionall_query.html)
+* Joining multiple tables: if joining two or more tables, _always_ prefix your column names with the table alias. If only selecting from one table, prefixes are not needed.
+* Explicit joins: be explicit about your join (i.e. write `inner join` instead of `join`). `left joins` are normally the most useful, `right joins` often indicate that you should change which table you select `from` and which one you `join` to.
+* Avoid table aliases in join conditions: especially initialisms. It's harder to understand what the table called "c" is compared to "customers".
+* `UNION ALL`: aim to use `UNION ALL` as opposed to `UNION` [*](http://docs.aws.amazon.com/redshift/latest/dg/c_example_unionall_query.html)
 #### Sub-queries
 
 Sub-queries should also be aligned to the right side of the river and then laid out using the same style as any other query.
 
-    ```
     SELECT  r.last_name,
             (SELECT MAX(YEAR(championship_date))
                 FROM champions AS c
@@ -128,7 +100,6 @@ Sub-queries should also be aligned to the right side of the river and then laid 
                 FROM champions AS c
                 WHERE YEAR(championship_date) > '2008'
                 AND c.confirmed = 'Y');
-    ```
 
 ---
 
