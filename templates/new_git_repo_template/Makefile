@@ -3,7 +3,7 @@ SHELL = /bin/sh
 # all: deps install [X, Y, Z...] clean
 
 eg_var ?=
-config_file := envvars.json
+config_file := config.json
 
 $(eval current_dir=$(shell pwd))
 $(eval program=$(shell jq '.Parameters.Program' ${config_file}))
