@@ -11,6 +11,7 @@ installations: deps install clean
 deps:
 	$(info [+] Download the relevant dependencies)
 	pip3 install pre-commit
+	pip3 install sqlfluff-templater-dbt
 
 install:
 	$(info [+] Install the relevant dependencies)
