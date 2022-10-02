@@ -9,4 +9,4 @@
 ################################################################################
 
 # Use a custom style.
-style 'ci/custom_markdown_rules.rb'
+style 'custom_markdown_rules.rb'
