@@ -19,6 +19,7 @@ repos:
     hooks:
     -   id: flake8 # enforces flake8 style consistency across Python projects.
         language_version: python3
+        args: [--max-line-length=150, --max-complexity=10]
 
 -   repo: https://github.com/asottile/reorder_python_imports
     rev: v2.6.0
@@ -42,6 +43,7 @@ repos:
 -   repo: https://github.com/jumanjihouse/pre-commit-hooks
     rev: 3.0.0
     hooks:
-    -   id: markdownlint # Lint .md files - configure in .mdlrc
+    -   id: markdownlint # Lint .md files - configure in .markdownlint.rb
+        args: [-s, .markdownlint.rb]
     -   id: shellcheck # Ensure shell scripts conform to shellcheck
     -   id: shfmt # Check shell style with shfmt
