@@ -19,7 +19,6 @@ repos:
     hooks:
     -   id: flake8 # enforces flake8 style consistency across Python projects.
         language_version: python3
-        args: [--max-line-length=130] # override the max-line-length
 
 -   repo: https://github.com/asottile/reorder_python_imports
     rev: v2.6.0
@@ -37,4 +36,12 @@ repos:
     hooks:
     -   id: sqlfluff-lint # Lints sql files with `SQLFluff`
         args: [--dialect, "snowflake"]
-        files: 'models/'
+        additional_dependencies: ['dbt-snowflake', 'sqlfluff-templater-dbt']
+        # files: 'TODO'
+
+-   repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 3.0.0
+    hooks:
+    -   id: markdownlint # Lint .md files - configure in .mdlrc
+    -   id: shellcheck # Ensure shell scripts conform to shellcheck
+    -   id: shfmt # Check shell style with shfmt
