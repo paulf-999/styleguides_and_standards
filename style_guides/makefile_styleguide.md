@@ -7,8 +7,8 @@ Style guide for `Makefiles`.
 ## Contents
 
 1. Naming conventions
-    * Targets
-    * Variables
+  * Targets
+  * Variables
 2. Misc
 3. Makefile template: `makefile_template.mk`
 4. Credits
