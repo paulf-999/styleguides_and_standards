@@ -20,15 +20,16 @@ installations: deps install clean
 
 get_ips:
 	@# Target: 'get_ips'. Get input args from config.json
-	#$(eval ENV=$(shell yq -r '.GeneralParameters.Env' ${CONFIG_FILE}))
+	#$(eval ENV=$(shell yq -r '.general_params.env' ${CONFIG_FILE}))
 	$(eval CURRENT_DIR=$(shell pwd))
-	$(eval PROGRAM=$(shell yq '.Parameters.Program' ${CONFIG_FILE}))
 
 deps: get_ips
 	@echo "----------------------------------------------------------------------------------------------------------------------"
 	@echo -e "${COLOUR_TXT_FMT_OPENING}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip depedency resolver errors.)${COLOUR_TXT_FMT_CLOSING}"
 	@echo "----------------------------------------------------------------------------------------------------------------------"
 	pip3 install yq -q
+	pip install virtualenv -q
+	virtualenv -p python3 venv
 
 install: get_ips
 	@echo "------------------------------------------------------------------"

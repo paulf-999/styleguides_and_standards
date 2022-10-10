@@ -2,20 +2,21 @@
 
 This document describes the use of the [`Gitflow` workflow](https://www.gitkraken.com/learn/git/git-flow) as a Git branching strategy.
 
-
 ## Contents
+
 * Overview
-    * Primary branches
-    * Supporting branches
+  * Primary branches
+* Supporting branches
 * Overall flow of Gitflow
 * Credits
+
 ---
 
 ## Overview
 
 Gitflow is a Git workflow that helps with continuous delivery and implementing DevOps practices.
 
-## Primary branches
+### Primary branches
 
 It consists of 2 main (primary) branches, each of which exist indefinitely:
 
@@ -44,11 +45,11 @@ During the development cycle, a variety of supporting branches are used:
 
 1. A `develop` branch is created from `main`
 2. A `release` branch is created from `develop`
-    1. When a `release` branch is complete, it is merged into both `develop` and `main`
+  * When a `release` branch is complete, it is merged into both `develop` and `main`
 3. A `feature` branch is created from `develop`
-    1. When a `feature` is complete it is merged into the `develop` branch
-6. A `hotfix` branch is created from `main` and is only created if an issue in `main` is detected
-    1. Once the `hotfix` is complete it is merged to both `develop` and `main`
+  * When a `feature` is complete it is merged into the `develop` branch
+4. A `hotfix` branch is created from `main` and is only created if an issue in `main` is detected
+  * Once the `hotfix` is complete it is merged to both `develop` and `main`
 
 ## Credits
 
