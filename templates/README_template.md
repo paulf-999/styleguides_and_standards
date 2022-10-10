@@ -2,7 +2,7 @@
 
 ---
 
-# Project Title
+## Project Title
 
 Simple one-line overview of use / purpose of the project.
 
@@ -24,9 +24,9 @@ Simple one-line overview of use / purpose of the project.
 
 <Brief overview of the purpose of the project and it's benefit>
 
-##### Technologies used
+### Technologies used
 
-- <List of technologies used, e.g. AWS, Python, Snowflake>
+<List of technologies used, e.g. AWS, Python, Snowflake>
 
 ---
 
@@ -50,7 +50,8 @@ Before you begin, ensure you have met the following requirements:
 
 * How to run the program
 * Step-by-step bullets
-```
+
+```bash
 code blocks for commands
 ```
 
@@ -59,7 +60,8 @@ code blocks for commands
 ## 3. Help
 
 Describe troubleshooting steps for common problems or issues. E.g.
-```
+
+```bash
 commands to run if specific messages are encountered
 ```
 
