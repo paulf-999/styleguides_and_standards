@@ -1,6 +1,6 @@
-# Makefile styleguide
+# Makefile style guide
 
-Styleguide for `Makefiles`.
+Style guide for `Makefiles`.
 
 ---
 
@@ -17,20 +17,20 @@ Styleguide for `Makefiles`.
 
 ## 1. Naming conventions
 
-#### Targets
+### Targets
 
-Target names should use lower case letters. Words are separated with a hyphen -. E.g.:
+Target names should use lower case letters. Words are separated with an underscore '_'. E.g.:
 
-```
-test-debug:
+```bash
+test_debug:
     $(build_dir)/debug/bin
 ```
 
-#### Variables
+### Variables
 
 Variables which are not special to make or inherited from the environment should be in lowercase. Words should be separated with underscore symbol _. E.g.:
 
-```
+```bash
 src_dir = $(current_dir)/src
 build_dir = $(current_dir)/build
 ```
@@ -39,36 +39,35 @@ build_dir = $(current_dir)/build
 
 ## 2. Misc
 
-#### `SHELL` variable
+### `SHELL` variable
 
 Every Makefile should contain this line:
 
-```
+```bash
 SHELL = /bin/sh
 ```
 
 to avoid trouble on systems where the SHELL variable might be inherited from the environment.
 
-#### Displaying text
+### Displaying text
 
 As per the GNU Make manual, you can use info / warning / error to display text:
 
-```
+```bash
 $(error   text…)
 $(warning text…)
 $(info    text…)
 ```
 
-#### `:=` 'simply expanded' operator
+### `:=` 'simply expanded' operator
 
-As a rule of thumb, when assigning variables, look to use the `:=` 'simply expanded' operator (see: https://makefiletutorial.com#flavors-and-modification)
+As a rule of thumb, when assigning variables, look to use the `:=` 'simply expanded' operator. See: [makefiletutorial.com](https://makefiletutorial.com#flavors-and-modification)
 
-
-#### Command Echoing / Silencing: `@`
+### Command Echoing / Silencing: `@`
 
 add an '@' before a command to stop it from being printed
 
-#### `$@` automatic variable
+### `$@` automatic variable
 
 * `$@` is an automatic variable that contains the target name
 
@@ -76,7 +75,7 @@ add an '@' before a command to stop it from being printed
 
 ## 3. Makefile template - `makefile_template.mk`
 
-See `makefile_template.mk` as a good example template / starting point for a Makefile.
+See `templates/makefile_template.mk` as a good example template / starting point for a Makefile.
 
 ---
 

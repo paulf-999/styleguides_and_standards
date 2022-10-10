@@ -1,28 +1,41 @@
 SHELL = /bin/sh
 
+# Usage:
+# make installations	# install the package for the first time, managing dependencies & performing a housekeeping cleanup too
+# make deps		# just install the dependencies
+# make install		# perform the end-to-end install
+# make clean		# perform a housekeeping cleanup
+
 # all: deps install [X, Y, Z...] clean
 
 .EXPORT_ALL_VARIABLES:
-
 .PHONY = installations deps install clean get_ips
 
-CONFIG_FILE := config.json
-
-$(eval current_dir=$(shell pwd))
-$(eval program=$(shell jq '.Parameters.Program' ${CONFIG_FILE}))
+CONFIG_FILE := ip/config.yaml
+# the 2 vars below are just for formatting CLI message output
+COLOUR_TXT_FMT_OPENING := \033[0;33m
+COLOUR_TXT_FMT_CLOSING := \033[0m
 
 installations: deps install clean
 
-deps:
-	$(info [+] Download the relevant dependencies)
-	pip install jq -q
-
-install:
-	$(info [+] Install the relevant dependencies)
-
-clean:
-	$(info [+] Remove any redundant files, e.g. downloads)
-
 get_ips:
 	@# Target: 'get_ips'. Get input args from config.json
-	#$(eval ENV=$(shell jq -r '.GeneralParameters.Env' ${CONFIG_FILE}))
+	#$(eval ENV=$(shell yq -r '.GeneralParameters.Env' ${CONFIG_FILE}))
+	$(eval CURRENT_DIR=$(shell pwd))
+	$(eval PROGRAM=$(shell yq '.Parameters.Program' ${CONFIG_FILE}))
+
+deps: get_ips
+	@echo "----------------------------------------------------------------------------------------------------------------------"
+	@echo -e "${COLOUR_TXT_FMT_OPENING}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip depedency resolver errors.)${COLOUR_TXT_FMT_CLOSING}"
+	@echo "----------------------------------------------------------------------------------------------------------------------"
+	pip3 install yq -q
+
+install: get_ips
+	@echo "------------------------------------------------------------------"
+	@echo -e "${COLOUR_TXT_FMT_OPENING}Target: 'install'. Run the setup and install targets.${COLOUR_TXT_FMT_CLOSING}"
+	@echo "------------------------------------------------------------------"
+
+clean:
+	@echo "------------------------------------------------------------------"
+	@echo -e "${COLOUR_TXT_FMT_OPENING}Target 'clean'. Remove any redundant files, e.g. downloads.${COLOUR_TXT_FMT_CLOSING}"
+	@echo "------------------------------------------------------------------"
