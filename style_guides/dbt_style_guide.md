@@ -67,7 +67,7 @@ Our models (typically) fit into three main categories: staging, marts, base/inte
 ## Naming and field conventions
 
 - Schema, table and column names should be in `snake_case`.
-- Use names based on the _business_ terminology, rather than the source terminology.
+- Use names based on the *business* terminology, rather than the source terminology.
 - Each model should have a primary key.
 - The primary key of a model should be named `<object>_id`, e.g. `account_id` – this makes it easier to know what `id` is being referenced in downstream joined models.
 - For base/staging models, fields should be ordered in categories, where identifiers are first and timestamps are at the end.

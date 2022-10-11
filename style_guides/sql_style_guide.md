@@ -92,9 +92,9 @@ FROM    customers AS c
 Include comments in SQL code where necessary. Use the C style opening `/*` and closing `*/` where possible otherwise precede comments with `--` and finish them with a new line.
 
 ```sql
-SELECT file_hash  -- stored ssdeep hash
+SELECT file_hash  --  inline comment here
 FROM file_system
-WHERE file_name = '.vimrc';
+WHERE file_name = '.abc';
 ```
 
 Example with C style opening `/*` and closing `*/`
@@ -104,5 +104,5 @@ Example with C style opening `/*` and closing `*/`
 UPDATE file_system
 SET file_modified_date = '1980-02-22 13:19:01.00000',
     file_size = 209732
-WHERE file_name = '.vimrc';
+WHERE file_name = '.abc';
 ```
