@@ -4,6 +4,7 @@ black
 boto3
 dbt-snowflake
 diagrams
+duckdb
 Faker
 flake8
 gunicorn
@@ -28,6 +29,7 @@ s3fs
 snowflake-connector-python
 SQLAlchemy
 sqlfluff
+sqlfluff-templater-dbt
 urllib3
 virtualenv
 wget
