@@ -28,8 +28,6 @@ deps: get_ips
 	@${PIP_INSTALL_CMD} -q -r requirements.txt
 
 get_ips:
-	@ Validate user input
-	@make -s validate_user_ip
 	@# Target: 'get_ips'. Get input args from config.yaml
 	$(eval CURRENT_DIR=$(shell pwd))
 	$(eval ENV=$(shell yq -r '.general_params.env | select( . != null )' ${CONFIG_FILE}))
