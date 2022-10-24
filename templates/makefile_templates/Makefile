@@ -23,7 +23,7 @@ deps: get_ips
 	@echo "----------------------------------------------------------------------------------------------------------------------"
 	@echo -e "${COLOUR_TXT_FMT_OPENING}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip depedency resolver errors.)${COLOUR_TXT_FMT_CLOSING}"
 	@echo "----------------------------------------------------------------------------------------------------------------------"
-	pip3 install yq -q
+	@pip3 install -q -r requirements.txt
 
 get_ips:
 	@# Target: 'get_ips'. Get input args from config.yaml
