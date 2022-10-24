@@ -7,9 +7,11 @@
 # all: deps install [X, Y, Z...] clean
 
 .EXPORT_ALL_VARIABLES:
-.PHONY = installations deps install clean get_ips
+.PHONY = installations deps clean install get_ips validate_user_ip
 
 CONFIG_FILE := ip/config.yaml
+PIP_INSTALL_CMD=pip3 install -q --disable-pip-version-check
+
 # the 2 vars below are just for formatting CLI message output
 COLOUR_TXT_FMT_OPENING := \033[0;33m
 COLOUR_TXT_FMT_CLOSING := \033[0m
@@ -23,9 +25,11 @@ deps: get_ips
 	@echo "----------------------------------------------------------------------------------------------------------------------"
 	@echo -e "${COLOUR_TXT_FMT_OPENING}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip depedency resolver errors.)${COLOUR_TXT_FMT_CLOSING}"
 	@echo "----------------------------------------------------------------------------------------------------------------------"
-	@pip3 install -q -r requirements.txt
+	@${PIP_INSTALL_CMD} -q -r requirements.txt
 
 get_ips:
+	@ Validate user input
+	@make -s validate_user_ip
 	@# Target: 'get_ips'. Get input args from config.yaml
 	$(eval CURRENT_DIR=$(shell pwd))
 	$(eval ENV=$(shell yq -r '.general_params.env | select( . != null )' ${CONFIG_FILE}))
@@ -33,8 +37,9 @@ get_ips:
 validate_user_ip: get_ips
 	@echo "------------------------------------------------------------------"
 	@echo "${COLOUR_TXT_FMT_OPENING}Target: 'validate_user_ip'. Validate the user inputs.${COLOUR_TXT_FMT_CLOSING}"
-	@echo "------------------------------------------------------------------"	# INFO: 1) Verify the user has provided a value for the key 'env' in ip/config.yaml
-	@[ "${env}" ] || ( echo "\nError: 'env' key is empty in ip/config.yaml\n"; exit 1 )
+	@echo "------------------------------------------------------------------"
+	# INFO: Verify the user has provided a value for the key 'env' in ip/config.yaml
+	@[ "${ENV}" ] || ( echo "\nError: 'ENV' key is empty in ip/config.yaml\n"; exit 1 )
 
 install: get_ips
 	@echo "------------------------------------------------------------------"
