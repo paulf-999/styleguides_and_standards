@@ -32,5 +32,6 @@ sqlfluff
 sqlfluff-templater-dbt
 urllib3
 virtualenv
+virtualenvwrapper
 wget
 yq

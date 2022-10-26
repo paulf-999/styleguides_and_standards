@@ -18,15 +18,20 @@ COLOUR_TXT_FMT_CLOSING := \033[0m
 
 installations: deps install clean
 
-#############################################################################################
-# Setup/validation targets: 'get_ips' & 'validate_user_ip'
-#############################################################################################
 deps: get_ips
 	@echo "----------------------------------------------------------------------------------------------------------------------"
 	@echo -e "${COLOUR_TXT_FMT_OPENING}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip depedency resolver errors.)${COLOUR_TXT_FMT_CLOSING}"
 	@echo "----------------------------------------------------------------------------------------------------------------------"
 	@${PIP_INSTALL_CMD} -q -r requirements.txt
 
+install: get_ips
+	@echo "------------------------------------------------------------------"
+	@echo -e "${COLOUR_TXT_FMT_OPENING}Target: 'install'. Run the setup and install targets.${COLOUR_TXT_FMT_CLOSING}"
+	@echo "------------------------------------------------------------------"
+
+#############################################################################################
+# Setup/validation targets: 'get_ips' & 'validate_user_ip'
+#############################################################################################
 get_ips:
 	@# Target: 'get_ips'. Get input args from config.yaml
 	$(eval CURRENT_DIR=$(shell pwd))
@@ -38,11 +43,6 @@ validate_user_ip: get_ips
 	@echo "------------------------------------------------------------------"
 	# INFO: Verify the user has provided a value for the key 'env' in ip/config.yaml
 	@[ "${ENV}" ] || ( echo "\nError: 'ENV' key is empty in ip/config.yaml\n"; exit 1 )
-
-install: get_ips
-	@echo "------------------------------------------------------------------"
-	@echo -e "${COLOUR_TXT_FMT_OPENING}Target: 'install'. Run the setup and install targets.${COLOUR_TXT_FMT_CLOSING}"
-	@echo "------------------------------------------------------------------"
 
 clean:
 	@echo "------------------------------------------------------------------"

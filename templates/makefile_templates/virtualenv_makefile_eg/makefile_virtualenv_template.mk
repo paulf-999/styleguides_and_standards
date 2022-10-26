@@ -20,16 +20,23 @@ installations: deps install clean
 
 get_ips:
 	@# Target: 'get_ips'. Get input args from config.json
-	#$(eval ENV=$(shell yq -r '.general_params.env' ${CONFIG_FILE}))
+	$(eval ENV=$(shell yq '.general_params.env | select( . != null )' ${CONFIG_FILE}))
 	$(eval CURRENT_DIR=$(shell pwd))
 
 deps: get_ips
 	@echo "----------------------------------------------------------------------------------------------------------------------"
 	@echo -e "${COLOUR_TXT_FMT_OPENING}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip depedency resolver errors.)${COLOUR_TXT_FMT_CLOSING}"
 	@echo "----------------------------------------------------------------------------------------------------------------------"
-	pip3 install yq -q
-	pip install virtualenv -q
-	virtualenv -p python3 venv
+	@virtualenv -p python3 venv; \
+	source venv/bin/activate; \
+	pip3 install -r requirements.txt; \
+
+validate_user_ip: get_ips
+	@echo "------------------------------------------------------------------"
+	@echo -e "${COLOUR_TXT_FMT_OPENING}Target: 'validate_user_ip'. Validate the user inputs.${COLOUR_TXT_FMT_CLOSING}"
+	@echo "------------------------------------------------------------------"
+	# INFO: Verify the user has provided a value for the key 'ENV' in ip/config.yaml
+	@[ "${ENV}" ] || ( echo "\nError: 'ENV' key is empty in ip/config.yaml\n"; exit 1 )
 
 install: get_ips
 	@echo "------------------------------------------------------------------"
