@@ -4,6 +4,12 @@ templater = dbt
 #templater = jinja
 sql_file_exts = .sql,.sql.j2,.dml,.ddl
 
+[sqlfluff:templater:dbt]
+# pass in our dbt project/cred details
+#project_dir =
+#profiles_dir =
+#profile =
+
 # allow aliasing in from clauses and join conditions.
 exclude_rules = L031
 
@@ -23,12 +29,6 @@ capitalisation_policy = upper
 select_clause_trailing_comma = forbid
 [sqlfluff:rules:L040] # Inconsistent capitalisation of boolean/null literal.
 capitalisation_policy = upper
-
-[sqlfluff:templater:dbt]
-# pass in our dbt project/cred details
-project_dir = dbt_cert/cert
-profiles_dir = dbt_cert/cert/profiles
-profile = cert
 
 [sqlfluff:templater:jinja]
 apply_dbt_builtins = True
