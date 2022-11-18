@@ -5,12 +5,18 @@ repos:
     rev: v3.2.0
     hooks:
     -   id: check-added-large-files # prevents giant files from being committed.
+    -   id: check-ast # checks whether files parse as valid python.
     -   id: check-json # checks json files for parseable syntax.
     -   id: check-yaml # checks yaml files for parseable syntax.
     -   id: check-merge-conflict # checks for files that contain merge conflict strings.
     -   id: debug-statements # checks for debugger imports and py37+ `breakpoint()` calls in python source.
+    -   id: detect-private-key # checks for the existence of private keys.
+    -   id: double-quote-string-fixer # replaces double quoted strings with single quoted strings.
     -   id: end-of-file-fixer # ensures that a file is either empty, or ends with one newline.
+    -   id: name-tests-test # verifies that test files are named correctly, e.g.: --pytest (the default): ensure tests match .*_test\.py
+    -   id: pretty-format-json # Checks that all your JSON files are pretty. "Pretty" here means that keys are sorted and indented.
     -   id: requirements-txt-fixer # sorts entries in requirements.txt.
+    -   id: sort-simple-yaml # Sorts simple YAML files which consist only of top-level keys, preserving comments and blocks.
     -   id: trailing-whitespace # trims trailing whitespace.
         language_version: python3
 
