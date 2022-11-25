@@ -1,234 +1,174 @@
 # dbt Style Guide
 
-*Note*: This is an adapted version of the [dbt style guide published by dbt Labs](https://github.com/dbt-labs/corp/blob/main/dbt_style_guide.md). However, it has been customised slightly in parts ([as recommended](https://docs.getdbt.com/guides/legacy/best-practices#use-a-style-guide-and-for-your-project)) to fit with our preferences.
+:bulb: This is an adapted version of the dbt style guide published by dbt Labs. However, it has been customised slightly in parts ([as recommended](https://docs.getdbt.com/guides/legacy/best-practices#use-a-style-guide-and-for-your-project)) to fit our preferences.
 
-## Model Naming
+**Note**: many of the proposed dbt styles come from a combination of the following sources:
 
-Our models (typically) fit into three main categories: staging, marts, base/intermediate. For more detail about why we use this structure, check out [this discourse post](https://discourse.getdbt.com/t/how-we-structure-our-dbt-projects/355). The file and naming structures are as follows:
+* [dbt’s own style guide](https://github.com/dbt-labs/corp/blob/main/dbt_style_guide.md).
+* [Best practices/recommendations provided within dbt reference documentation](https://docs.getdbt.com/reference/dbt_project.yml.).
+* [dbt style guide put together by GitLab](https://about.gitlab.com/handbook/business-technology/data-team/platform/dbt-guide/#style-and-usage-guide).
+
+---
+
+## Contents
+
+1. dbt Models
+   1. Model Organisation
+   2. Model Naming Conventions
+   3. Minimum Requirements for dbt Models
+2. SQL Style Guide
+3. (Yaml) Resource Properties
+4. Snapshots
+5. Macros
+
+---
+
+## 1. dbt Models
+
+### 1.1. Model Organisation
+
+Our dbt models (typically) fit into two main categories:
+
+| Category | Description                  |
+| -------- | ---------------------------- |
+| Staging  | Contains models that clean and standardise data. |
+| Marts    | Contains models which combine or heavily transform data. |
+
+For more detail about why we use this structure, check out this discourse post. The file and naming structures used for dbt models are as follows:
+
+<details>
+
+<summary>Click to expand</summary>
 
 ```bash
-├── dbt_project.yml
-└── models
-    ├── marts
-    |   └── core
-    |       ├── intermediate
-    |       |   ├── intermediate.yml
-    |       |   ├── customers__unioned.sql
-    |       |   ├── customers__grouped.sql
-    |       └── core.yml
-    |       └── core.docs
-    |       └── dim_customers.sql
-    |       └── fct_orders.sql
-    └── staging
-        └── stripe
-            ├── base
-            |   ├── base__stripe_invoices.sql
-            ├── src_stripe.yml
-            ├── src_stripe.docs
-            ├── stg_stripe.yml
-            ├── stg_stripe__customers.sql
-            └── stg_stripe__invoices.sql
+├── models
+│   ├── marts
+│   │   ├── _models.yml
+│   │   └── dim_customer.sql
+│   ├── staging
+│   │   ├── {{ DBT_PROJECT_NAME }}
+│   │   │   ├── {{ DBT_PROJECT_NAME }}__docs.md
+│   │   │   ├── {{ DBT_PROJECT_NAME }}__models.yml
+│   │   │   ├── {{ DBT_PROJECT_NAME }}__sources.yml
+│   │   │   └── stg_{{ DATA_SRC }}__customer.sql
+│   └── utilities
+│       └── all_dates.sql
 ```
 
-- All objects should be plural, such as: `stg_stripe__invoices`
-- Base tables are prefixed with `base__`, such as: `base__<source>_<object>`
-- Intermediate tables should end with a past tense verb indicating the action performed on the object, such as: `customers__unioned`
-- Marts are categorized between fact (immutable, verbs) and dimensions (mutable, nouns) with a prefix that indicates either, such as: `fct_orders` or `dim_customers`
+</details><br/>
 
-## Model configuration
+### 1.2. Model Naming Conventions
 
-- Model-specific attributes (like sort/dist keys) should be specified in the model.
-- If a particular configuration applies to all models in a directory, it should be specified in the `dbt_project.yml` file.
-- In-model configurations should be specified like this:
+TODO - WIP
+See dbt: [Naming Conventions for dbt Models](dbt_style_guide_child_pages/naming_conventions_for_dbt_models.md).
 
-```python
-{{
-  config(
-    materialized = 'table',
-    sort = 'id',
-    dist = 'id'
-  )
-}}
+<br/>
 
-```
+### 1.3. Minimum Requirements for dbt Models
 
-- Marts should always be configured as tables
+| Attribute                       | Requirement                  |
+| ------------------------------- | ---------------------------- |
+| Primary Key                     | • Each model should have a primary key that can identify the unique row.<br/>• The primary key should be named `<object>_id.`<br/>◦ E.g., `account_id` – this makes it easier to know what id is referenced in downstream joined models. |
+| dbt Tests                       | At a minimum, unique and `not_null` tests should be applied to the expected primary key of each model. |
+| Model Selection                 | • Only models in `staging` should select from sources.<br/>• Models **not** within the `staging` folder should select from refs. |
+| Use CTEs rather than subqueries | • When developing dbt models, aim to use CTE statements rather than subqueries.<br/>• For further details about why see [CTE vs Subquery \| docs.getdbt.com](https://docs.getdbt.com/terms/cte#cte-vs-subquery).<br/>• For more information, see [CTE Style Guide](https://github.com/paulf-999/styleguides_and_standards/blob/main/style_guides/cte_style_guide.md). |
+| Ephemeral Models                | • If you want to separate more complex SQL into a separate model, you absolutely should keep things DRY ("don't repeat yourself") and easier to understand.<br/>• The config setting `materalized='ephemeral'` is one option that treats the model like a CTE.<br/>• See [dbt Model Materialisations - Ephemeral \| docs.getdbt.com](https://docs.getdbt.com/docs/build/materializations#ephemeral) for more details. |
 
-## dbt conventions
+---
 
-- Only `stg_` models (or `base_` models if your project requires them) should select from `source`s.
-- All other models should only select from other models.
+## 2. SQL Style Guide
 
-## Testing
+TODO
+See dbt: [SQL/dbt Style Guide using SQLFluff](dbt_style_guide_child_pages/yaml_naming_conventions_for_resource_properties.md).
 
-- Every subdirectory should contain a `.yml` file, in which each model in the subdirectory is tested. For staging folders, the naming structure should be `src_sourcename.yml`. For other folders, the structure should be `foldername.yml` (example `core.yml`).
-- At a minimum, unique and not_null tests should be applied to the primary key of each model.
+---
 
-## Naming and field conventions
+## 3. (Yaml) Resource Properties
 
-- Schema, table and column names should be in `snake_case`.
-- Use names based on the *business* terminology, rather than the source terminology.
-- Each model should have a primary key.
-- The primary key of a model should be named `<object>_id`, e.g. `account_id` – this makes it easier to know what `id` is being referenced in downstream joined models.
-- For base/staging models, fields should be ordered in categories, where identifiers are first and timestamps are at the end.
-- Timestamp columns should be named `<event>_at`, e.g. `created_at`, and should be in UTC. If a different timezone is being used, this should be indicated with a suffix, e.g `created_at_pt`.
-- Booleans should be prefixed with `is_` or `has_`.
-- Price/revenue fields should be in decimal currency (e.g. `19.99` for $19.99; many app databases store prices as integers in cents). If non-decimal currency is used, indicate this with suffix, e.g. `price_in_cents`.
-- Avoid reserved words as column names
-- Consistency is key! Use the same field names across models where possible, e.g. a key to the `customers` table should be named `customer_id` rather than `user_id`.
+<details>
 
-## CTEs
+**<summary>What are dbt Resource Properties? (Click to expand)</summary>**
 
-For more information about why we use so many CTEs, check out [this discourse post](https://discourse.getdbt.com/t/why-the-fishtown-sql-style-guide-uses-so-many-ctes/1091).
+Resources in your project (e.g., models, snapshots, seeds, tests etc.) can have several declared **properties.** As a rule of thumb, properties declare things *about* your project resources. For example, you can use resource **properties** to:
 
-- All `{{ ref('...') }}` statements should be placed in CTEs at the top of the file
-- Where performance permits, CTEs should perform a single, logical unit of work.
-- CTE names should be as verbose as needed to convey what they do
-- CTEs with confusing or noteable logic should be commented
-- CTEs that are duplicated across models should be pulled out into their own models
-- create a `final` or similar CTE that you select from as your last line of code. This makes it easier to debug code within a model (without having to comment out code!)
-- CTEs should be formatted like this:
+- Describe models, snapshots, seed files, and their columns.
+- Assert "truths" about a model in the form of [tests](https://docs.getdbt.com/docs/building-a-dbt-project/tests), e.g. "this id column is unique".
+- Define pointers to existing tables that contain raw data in the form of [sources](https://docs.getdbt.com/docs/building-a-dbt-project/using-sources), and assert the expected "freshness" of this raw data.
 
-``` sql
-with
+**Where can I define properties?**
 
-events as (
+In dbt, properties are declared in .yml files in the same directory as your resources. You can name these files `whatever_you_want.yml` and nest them arbitrarily deeply in subfolders within each directory. We recommend you define properties in dedicated paths alongside the resources they're describing.
 
-    ...
+</details><br/>
 
-),
+**Naming Conventions & Style Guide for Resource Properties**
 
--- CTE comments go here
-filtered_events as (
+TODO
+See [YAML Naming Conventions & Style Guide for Resource Properties.](dbt_style_guide_child_pages/yaml_naming_conventions_for_resource_properties.md).
 
-    ...
+---
 
-)
+## 4. Snapshots
 
-select * from filtered_events
-```
+<details>
 
-## SQL style guide
+**<summary>Background: What are dbt Snapshots? (Click to expand)</summary>**
 
-See [SQL style guide](https://github.com/paulf-999/styleguides_and_standards/tree/main/templates/sql_style_guide.md).
+* Snapshots are a way to make point-in-time copies of source tables. dbt has [excellent documentation](https://docs.getdbt.com/docs/building-a-dbt-project/snapshots) on how snapshots work.
+* Snapshot tables are created in dbt using the command dbt snapshot
+* Snapshot definitions are stored in the [snapshots folder](https://gitlab.com/gitlab-data/analytics/tree/master/transform/snowflake-dbt/snapshots)
+* The data source should organise snapshots to allow for easy discovery
 
-### Example SQL
+The following is an example of how to create a snapshot table, following [dbt's recommended 'timestamp strategy](https://docs.getdbt.com/docs/building-a-dbt-project/snapshots#timestamp-strategy-recommended)':
 
-```sql
-with
+```jinja
+{% snapshot sfdc_opportunity_snapshots %}
 
-my_data as (
-
-    select * from {{ ref('my_data') }}
-
-),
-
-some_cte as (
-
-    select * from {{ ref('some_cte') }}
-
-),
-
-some_cte_agg as (
-
-    select
-        id,
-        sum(field_4) as total_field_4,
-        max(field_5) as max_field_5
-
-    from some_cte
-    group by 1
-
-),
-
-final as (
-
-    select [distinct]
-        my_data.field_1,
-        my_data.field_2,
-        my_data.field_3,
-
-        -- use line breaks to visually separate calculations into blocks
-        case
-            when my_data.cancellation_date is null
-                and my_data.expiration_date is not null
-                then expiration_date
-            when my_data.cancellation_date is null
-                then my_data.start_date + 7
-            else my_data.cancellation_date
-        end as cancellation_date,
-
-        some_cte_agg.total_field_4,
-        some_cte_agg.max_field_5
-
-    from my_data
-    left join some_cte_agg
-        on my_data.id = some_cte_agg.id
-    where my_data.field_1 = 'abc'
-        and (
-            my_data.field_2 = 'def' or
-            my_data.field_2 = 'ghi'
+    {{
+        config(
+          unique_key='id',
+          strategy='timestamp',
+          updated_at='<TS_field>',
         )
-    having count(*) > 1
+    }}
 
-)
+    SELECT *
+    FROM {{ source('<db_object>') }}
 
-select * from final
-
+{% endsnapshot %}
 ```
 
-- Your join should list the "left" table first (i.e. the table you are selecting `from`):
+**Building Models on top of Snapshots**
 
-```sql
-select
-    trips.*,
-    drivers.rating as driver_rating,
-    riders.rating as rider_rating
+Sometimes, there is a need to have a record per day rather than a record per changed record with timeframe constraints dbt_valid_from and dbt_valid_to. In this case, a technique called date spining can be used to create a model with daily snapshots.
 
-from trips
-left join users as drivers
-    on trips.driver_id = drivers.user_id
-left join users as riders
-    on trips.rider_id = riders.user_id
+In date spining, a snapshot model is joined to a date table based on `dbt_valid_from` and `dbt_valid_to`.
 
-```
+Another possibility to generate daily records is using the [dbt utility function date_spine](https://github.com/dbt-labs/dbt-utils/blob/main/macros/sql/date_spine.sql).
 
-## YAML style guide
+**Incremental Models on top of Snapshots**
 
-- Indents should be two spaces
-- List items should be indented
-- Use a new line to separate list items that are dictionaries where appropriate
-- Lines of YAML should be no longer than 80 characters.
+Consider materialising the model incremental if you use date spining to generate daily records. This way, only new records will be added based on the snapshot_date condition.
 
-### Example YAML
+</details><br/>
 
-```yaml
-version: 2
+**Best Practices when developing/using dbt snapshots**
 
-models:
-  - name: events
-    columns:
-      - name: event_id
-        description: This is a unique identifier for the event
-        tests:
-          - unique
-          - not_null
+| Category | Description                  |
+| -------- | ---------------------------- |
+| Naming Convention | Follow the naming convention `{source_name}_{source_table_name}_snapshot.sql` for your file name |
+| Best Practice     | *Always* select from a **source table**. Even if some deduplication is required, a source table must be chosen, as selecting from a downstream dbt model is prone to failure. |
+| Best Practice     | • Avoid any transformations in snapshots, potentially aside from deduplication efforts.<br/>• Instead, always look to clean data downstream |
+| Best Practice     | Contains models which combine or heavily transform data. |
 
-      - name: event_time
-        description: "When the event occurred in UTC (eg. 2018-01-01 12:00:00)"
-        tests:
-          - not_null
+---
 
-      - name: user_id
-        description: The ID of the user who recorded the event
-        tests:
-          - not_null
-          - relationships:
-              to: ref('users')
-              field: id
-```
+## 5. Macros
 
-## Jinja style guide
+Adhere to the following standards when developing/using dbt Macros:
 
-- When using Jinja delimiters, use spaces on the inside of your delimiter, like `{{ this }}` instead of `{{this}}`
-- Use newlines to visually indicate logical blocks of Jinja
+| Category           | Description                  |
+| ------------------ | ---------------------------- |
+| Naming conventions | The file name must match the macro name. |
+| `macros.yml`/`macros.md` | dbt macros should be documented either in the `macro.yml` file or in a `macros.md` file, providing the options for longer, more meaningfull descriptions |
+| [`dbt-utils`](https://hub.getdbt.com/fishtown-analytics/dbt_utils/latest/) | We make use of the `dbt-utils` package. This adds several macros that are commonly useful. Important ones to take note of:<br/>• `group_by` - This macro builds a group by statement for fields 1…N<br/>• `star` - This macro pulls all the columns from a table, excluding the columns listed in the except argument<br/>• `surrogate_key` - This macro takes a list of field names and returns a hash of the values to generate a unique key |
