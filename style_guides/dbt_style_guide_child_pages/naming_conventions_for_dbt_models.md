@@ -97,9 +97,19 @@ The purpose of these 2 folders within the models directory are as follows:
 
 As described in the above table within the row ‘audit fields’, every fact and dimension within the dimensional data model must be created with a series of (mandatory) metadata fields. These are described in further detail below:
 
-Note the following audit/metadata fields are to be added to fact and dimension tables using the following two custom dbt macros: sys_**dim**_audit_fields and sys_**fact**_audit_fields.
+Note the following audit/metadata fields are to be added to fact and dimension tables using the following two custom dbt macros: `sys_**dim**_audit_fields` and `sys_**fact**_audit_fields`.
 
-TODO - table
+| Audit/Metadata Field Name | Description   | Data Type | Rules |
+| ------------------------- | ------------- | --------- | ----- |
+| `_FROM_TS`                  | • Defined on dimensions only<br/>• The date and time from which the record is effective, where Divisional CDC data is available, the business timestamps will be used. Otherwise, the CDC From Date from the AAC RDS layer will be used | `TIMESTAMP_NTZ` | `_FROM_TS` on the first record for an alternate key is set to the record creation date, or if the creation date is not applicable, it can be set to a system-defined `_START_OF_TIME` variable (01-JAN-190000:00:00). |
+| `_TO_TS`                    | • Defined on dimensions only<br/>• The date and time until the record are adequate; the business timestamps will be used when Divisional CDC data is available. Otherwise, the CDC To Date from the AAC RDS layer will be used | `TIMESTAMP_NTZ` | `_TO_TS` on the last record for an alternate key is set to a system-defined `_END_OF_TIME` variable (31-12-999923:59:59) unless the record has been closed out in which cast it will be the date/time that the record was closed. |
+| `_CURRENT_IND`              | • Defined on dimensions only<br/>• An indicator identifying the current records within the table<br/>• I.e. records where sysdate at the time of querying is between the _FROM_TS and _TO_TS | `BOOLEAN` | - |
+| `_DELETED_IND`              | • An indicator identifying records that have been deleted in the source system. | `BOOLEAN` | - |
+| `_CREATED_TS`               | The date and time that the record was created. | `TIMESTAMP_NTZ` | - |
+| `_LAST_UPDATE_TS`           | The date and time that the record was last updated. | `TIMESTAMP_NTZ` | - |
+| `_ROW_HASH`                 | The hash value of the record. Used in ETL processing to identify if the record has changed. | `VARCHAR` | - |
+| `_RUN_KEY`                  | A key identifying the batch job that inserted or last updated the record. | `NUMBER(15)` | - |
+| `_DSID`                     | Dataset ID that links to table metadata. | `NUMBER(15)` | - |
 
 ### 3.3. Null Handling
 
