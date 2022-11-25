@@ -137,6 +137,18 @@ The following is an example of how to create a snapshot table, following [dbt's 
 {% endsnapshot %}
 ```
 
+**Building Models on top of Snapshots**
+
+Sometimes, there is a need to have a record per day rather than a record per changed record with timeframe constraints dbt_valid_from and dbt_valid_to. In this case, a technique called date spining can be used to create a model with daily snapshots.
+
+In date spining, a snapshot model is joined to a date table based on `dbt_valid_from` and `dbt_valid_to`.
+
+Another possibility to generate daily records is using the [dbt utility function date_spine](https://github.com/dbt-labs/dbt-utils/blob/main/macros/sql/date_spine.sql).
+
+**Incremental Models on top of Snapshots**
+
+Consider materialising the model incremental if you use date spining to generate daily records. This way, only new records will be added based on the snapshot_date condition.
+
 </details><br/>
 
 **Best Practices when developing/using dbt snapshots**
