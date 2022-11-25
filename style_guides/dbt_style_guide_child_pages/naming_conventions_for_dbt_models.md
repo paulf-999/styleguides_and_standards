@@ -81,12 +81,44 @@ The purpose of these 2 folders within the models directory are as follows:
 
 ### 3.1. Fact and Dimensions
 
-TODO
+|   | Dimension | Fact |
+| - | --------- | ---- |
+| Prefix | `dim_` | `fact_` |
+| Surrogate Key | Yes (based on sequence) | Yes (based on sequence) |
+| Sequence Name | `S_<TABLE_NAME>` | `S_<TABLE_NAME>` |
+| Alternate Key | • Yes - based on Natural Business key(s) of source table(s).<br/>• Defined as `VARCHAR` to handle alpha-numeric keys. | • Yes - based on Natural Business key(s) of source table(s).<br/>• Defined as `VARCHAR` to handle alpha-numeric keys. |
+| Foreign Keys | Defined for information purposes only | Defined for information purposes only |
+| Include alternate/Natural Key columns from referenced foreign key tables? | Yes, reasoning:<br/>• Reduces the need to perform lookups on reference tables as codes are included in the Fact<br/>• Supports As-Is/As-Was lookups on SCD Type 2 tables | Yes, reasoning:<br/>• Reduces the need to perform lookups on reference tables as codes are included in the Fact<br/>• Supports As-Is/As-Was lookups on SCD Type 2 tables |
+| Audit Fields | • `_FROM_TS  `<br/>• `_TO_TS`<br/>• `_CURRENT_IND`<br/>• `_DELETED_IND` <br/>• `_CREATED_TS`<br/>• `_LAST_UPDATE_TS`<br/>• `_ROW_HASH`<br/>• `_RUN_KEY`<br/>• `_DSID` | • `_DELETED_IND`<br/>• `_CREATED_TS`</br>• `_LAST_UPDATE_TS`<br/>• `_RUN_KEY`<br/>• `_DSID` |
+| General Order of Columns | • PK<br/>• FK Key<br/>• Code<br/>• Description<br/>• Amounts/Perk<br/>• Date<br/>• Indicator<br/>• Audit fields | • PK (Surrogate Key) <br/>• FK Keys <br/>• Dates <br/>• Indicators <br/>• Measures <br/>• Audit Fields |
+| Indexes | No – indexes are not required in Snowflake. | No – indexes are not required in Snowflake. |
 
 ### 3.2. Audit (Metadata) Fields
 
-TODO
+As described in the above table within the row ‘audit fields’, every fact and dimension within the dimensional data model must be created with a series of (mandatory) metadata fields. These are described in further detail below:
+
+Note the following audit/metadata fields are to be added to fact and dimension tables using the following two custom dbt macros: `sys_**dim**_audit_fields` and `sys_**fact**_audit_fields`.
+
+| Audit/Metadata Field Name | Description   | Data Type | Rules |
+| ------------------------- | ------------- | --------- | ----- |
+| `_FROM_TS`                  | • Defined on dimensions only<br/>• The date and time from which the record is effective, where Divisional CDC data is available, the business timestamps will be used. Otherwise, the CDC From Date from the AAC RDS layer will be used | `TIMESTAMP_NTZ` | `_FROM_TS` on the first record for an alternate key is set to the record creation date, or if the creation date is not applicable, it can be set to a system-defined `_START_OF_TIME` variable (01-JAN-190000:00:00). |
+| `_TO_TS`                    | • Defined on dimensions only<br/>• The date and time until the record are adequate; the business timestamps will be used when Divisional CDC data is available. Otherwise, the CDC To Date from the AAC RDS layer will be used | `TIMESTAMP_NTZ` | `_TO_TS` on the last record for an alternate key is set to a system-defined `_END_OF_TIME` variable (31-12-999923:59:59) unless the record has been closed out in which cast it will be the date/time that the record was closed. |
+| `_CURRENT_IND`              | • Defined on dimensions only<br/>• An indicator identifying the current records within the table<br/>• I.e. records where sysdate at the time of querying is between the _FROM_TS and _TO_TS | `BOOLEAN` | - |
+| `_DELETED_IND`              | • An indicator identifying records that have been deleted in the source system. | `BOOLEAN` | - |
+| `_CREATED_TS`               | The date and time that the record was created. | `TIMESTAMP_NTZ` | - |
+| `_LAST_UPDATE_TS`           | The date and time that the record was last updated. | `TIMESTAMP_NTZ` | - |
+| `_ROW_HASH`                 | The hash value of the record. Used in ETL processing to identify if the record has changed. | `VARCHAR` | - |
+| `_RUN_KEY`                  | A key identifying the batch job that inserted or last updated the record. | `NUMBER(15)` | - |
+| `_DSID`                     | Dataset ID that links to table metadata. | `NUMBER(15)` | - |
 
 ### 3.3. Null Handling
 
-TODO
+The following high-level standardised rules for null handling are to be applied:
+
+| Type of SQL Attribute | NULL/NOT NULL? | Comments |
+| --------------------- | -------------- | -------- |
+| Surrogate/Alternate Keys fields | NOT NULL | - |
+| Foreign Keys | NOT NULL | Though where foreign keys can be set to:<br/>• -1 (Unknown)<br/>• or 0 (Not Applicable)
+| Audit/Metadata Fields | NOT NULL | - |
+| Measures on Fact tables | Can be set to null if required |
+| Other fields | As applicable |

@@ -59,7 +59,6 @@ For more detail about why we use this structure, check out this discourse post.
 
 ### 1.2. Model Naming Conventions
 
-TODO - WIP
 See dbt: [Naming Conventions for dbt Models](dbt_style_guide_child_pages/naming_conventions_for_dbt_models.md).
 
 <br/>
