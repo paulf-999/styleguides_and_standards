@@ -81,12 +81,28 @@ The purpose of these 2 folders within the models directory are as follows:
 
 ### 3.1. Fact and Dimensions
 
-TODO
+|   | Dimension | Fact |
+| - | --------- | ---- |
+| Prefix | `dim_` | `fact_` |
+| Surrogate Key | Yes (based on sequence) | Yes (based on sequence) |
+| Sequence Name | `S_<TABLE_NAME>` | `S_<TABLE_NAME>` |
+| Alternate Key | • Yes - based on Natural Business key(s) of source table(s).<br/>• Defined as `VARCHAR` to handle alpha-numeric keys. | • Yes - based on Natural Business key(s) of source table(s).<br/>• Defined as `VARCHAR` to handle alpha-numeric keys. |
+| Foreign Keys | Defined for information purposes only | Defined for information purposes only |
+| Include alternate/Natural Key columns from referenced foreign key tables? | Yes, reasoning:<br/>• Reduces the need to perform lookups on reference tables as codes are included in the Fact<br/>• Supports As-Is/As-Was lookups on SCD Type 2 tables | Yes, reasoning:<br/>• Reduces the need to perform lookups on reference tables as codes are included in the Fact<br/>• Supports As-Is/As-Was lookups on SCD Type 2 tables |
+| Audit Fields | • `_FROM_TS  `<br/>• `_TO_TS`<br/>• `_CURRENT_IND`<br/>• `_DELETED_IND` <br/>• `_CREATED_TS`<br/>• `_LAST_UPDATE_TS`<br/>• `_ROW_HASH`<br/>• `_RUN_KEY`<br/>• `_DSID` | • `_DELETED_IND`<br/>• `_CREATED_TS`</br>• `_LAST_UPDATE_TS`<br/>• `_RUN_KEY`<br/>• `_DSID` |
+| General Order of Columns | • PK<br/>• FK Key<br/>• Code<br/>• Description<br/>• Amounts/Perk<br/>• Date<br/>• Indicator<br/>• Audit fields | • PK (Surrogate Key) <br/>• FK Keys <br/>• Dates <br/>• Indicators <br/>• Measures <br/>• Audit Fields |
+| Indexes | No – indexes are not required in Snowflake. | No – indexes are not required in Snowflake. |
 
 ### 3.2. Audit (Metadata) Fields
 
-TODO
+As described in the above table within the row ‘audit fields’, every fact and dimension within the dimensional data model must be created with a series of (mandatory) metadata fields. These are described in further detail below:
+
+Note the following audit/metadata fields are to be added to fact and dimension tables using the following two custom dbt macros: sys_**dim**_audit_fields and sys_**fact**_audit_fields.
+
+TODO - table
 
 ### 3.3. Null Handling
 
-TODO
+The following high-level standardised rules for null handling are to be applied:
+
+TODO - table
