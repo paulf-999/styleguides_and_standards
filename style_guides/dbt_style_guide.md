@@ -59,8 +59,8 @@ For more detail about why we use this structure, check out this discourse post.
 
 ### 1.2. Model Naming Conventions
 
-TODO
-See dbt: [Naming Conventions for dbt Models]().
+TODO - WIP
+See dbt: [Naming Conventions for dbt Models](dbt_style_guide_child_pages/naming_conventions_for_dbt_models.md).
 
 <br/>
 
@@ -78,7 +78,8 @@ See dbt: [Naming Conventions for dbt Models]().
 
 ## 2. SQL Style Guide
 
-See dbt: [SQL/dbt Style Guide using SQLFluff]().
+TODO
+See dbt: [SQL/dbt Style Guide using SQLFluff](dbt_style_guide_child_pages/yaml_naming_conventions_for_resource_properties.md).
 
 ---
 
@@ -103,7 +104,7 @@ In dbt, properties are declared in .yml files in the same directory as your reso
 **Naming Conventions & Style Guide for Resource Properties**
 
 TODO
-See [YAML Naming Conventions & Style Guide for Resource Properties.]().
+See [YAML Naming Conventions & Style Guide for Resource Properties.](dbt_style_guide_child_pages/yaml_naming_conventions_for_resource_properties.md).
 
 ---
 
