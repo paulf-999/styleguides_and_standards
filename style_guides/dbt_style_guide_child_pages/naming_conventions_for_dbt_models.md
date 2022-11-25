@@ -105,4 +105,10 @@ TODO - table
 
 The following high-level standardised rules for null handling are to be applied:
 
-TODO - table
+| Type of SQL Attribute | NULL/NOT NULL? | Comments |
+| --------------------- | -------------- | -------- |
+| Surrogate/Alternate Keys fields | NOT NULL | - |
+| Foreign Keys | NOT NULL | Though where foreign keys can be set to:<br/>• -1 (Unknown)<br/>• or 0 (Not Applicable)
+| Audit/Metadata Fields | NOT NULL | - |
+| Measures on Fact tables | Can be set to null if required |
+| Other fields | As applicable |
