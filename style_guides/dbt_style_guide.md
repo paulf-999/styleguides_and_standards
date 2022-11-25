@@ -91,9 +91,9 @@ See dbt: [SQL/dbt Style Guide using SQLFluff](dbt_style_guide_child_pages/yaml_n
 
 Resources in your project (e.g., models, snapshots, seeds, tests etc.) can have several declared **properties.** As a rule of thumb, properties declare things *about* your project resources. For example, you can use resource **properties** to:
 
-- Describe models, snapshots, seed files, and their columns.
-- Assert "truths" about a model in the form of [tests](https://docs.getdbt.com/docs/building-a-dbt-project/tests), e.g. "this id column is unique".
-- Define pointers to existing tables that contain raw data in the form of [sources](https://docs.getdbt.com/docs/building-a-dbt-project/using-sources), and assert the expected "freshness" of this raw data.
+* Describe models, snapshots, seed files, and their columns.
+* Assert "truths" about a model in the form of [tests](https://docs.getdbt.com/docs/building-a-dbt-project/tests), e.g. "this id column is unique".
+* Define pointers to existing tables that contain raw data in the form of [sources](https://docs.getdbt.com/docs/building-a-dbt-project/using-sources), and assert the expected "freshness" of this raw data.
 
 **Where can I define properties?**
 
@@ -103,7 +103,6 @@ In dbt, properties are declared in .yml files in the same directory as your reso
 
 **Naming Conventions & Style Guide for Resource Properties**
 
-TODO
 See [YAML Naming Conventions & Style Guide for Resource Properties.](dbt_style_guide_child_pages/yaml_naming_conventions_for_resource_properties.md).
 
 ---
