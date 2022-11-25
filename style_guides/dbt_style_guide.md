@@ -62,11 +62,14 @@ See dbt: [Naming Conventions for dbt Models]().
 
 ### 1.3. Minimum Requirements for dbt Models
 
-TODO
-| Category | Description                  |
-| -------- | ---------------------------- |
-| Staging  | Contains models that clean and standardise data. |
-| Marts    | Contains models which combine or heavily transform data. |
+TODO - CTEs link below
+| Attribute                       | Requirement                  |
+| ------------------------------- | ---------------------------- |
+| Primary Key                     | • Each model should have a primary key that can identify the unique row.<br/>• The primary key should be named `<object>_id.`<br/>◦ E.g., `account_id` – this makes it easier to know what id is referenced in downstream joined models. |
+| dbt Tests                       | At a minimum, unique and `not_null` tests should be applied to the expected primary key of each model. |
+| Model Selection                 | • Only models in `staging` should select from sources.<br/>• Models **not** within the `staging` folder should select from refs. |
+| Use CTEs rather than subqueries | • When developing dbt models, aim to use CTE statements rather than subqueries.<br/>• For further details about why see [CTE vs Subquery - docs.getdbt.com](https://docs.getdbt.com/terms/cte#cte-vs-subquery).<br/>• For more information, see dbt: CTEs. |
+| Ephemeral Models                | • If you want to separate more complex SQL into a separate model, you absolutely should keep things DRY ("don't repeat yourself") and easier to understand.<br/>• The config setting `materalized='ephemeral'` is one option that treats the model like a CTE.<br/>• See (dbt) Model Materialisations - Ephemeral | dbt Docs for more details. |
 
 ---
 
