@@ -77,7 +77,6 @@ See dbt: [Naming Conventions for dbt Models](dbt_style_guide_child_pages/naming_
 
 ## 2. SQL Style Guide
 
-TODO
 See dbt: [SQL/dbt Style Guide using SQLFluff](dbt_style_guide_child_pages/yaml_naming_conventions_for_resource_properties.md).
 
 ---
