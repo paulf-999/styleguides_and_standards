@@ -5,7 +5,7 @@
 **Note**: many of the proposed dbt styles come from a combination of the following sources:
 
 * [dbt’s own style guide](https://github.com/dbt-labs/corp/blob/main/dbt_style_guide.md).
-* [Best practices/recommendations provided within dbt reference documentation](https://docs.getdbt.com/reference/dbt_project.yml.).
+* [Best practices/recommendations provided within dbt reference documentation](https://docs.getdbt.com/reference/dbt_project.yml).
 * [dbt style guide put together by GitLab](https://about.gitlab.com/handbook/business-technology/data-team/platform/dbt-guide/#style-and-usage-guide).
 
 ---
