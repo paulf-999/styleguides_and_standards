@@ -48,12 +48,28 @@ The SQLFluff configuration rules that come ‘out of the box’ have been overwr
 [sqlfluff]
 dialect = snowflake
 sql_file_exts = .sql,.sql.j2,.dml,.ddl
+# allow aliasing in from clauses and join conditions.
+exclude_rules = L031
 
 [sqlfluff:indentation]
 indented_joins = true
+indented_using_on = true
+template_blocks_indent = true
 
+[sqlfluff:layout:type:comma]
+line_position = leading
+
+[sqlfluff:templater]
+unwrap_wrapped_queries = true
+
+# Some rules can be configured directly from the config common to other rules
 [sqlfluff:rules]
-comma_style = leading
+tab_space_size = 4
+max_line_length = 120
+indent_unit = space
+allow_scalar = true
+single_table_references = consistent
+unquoted_identifiers_policy = all
 
 [sqlfluff:rules:L010] # Inconsistent capitalisation of keywords.
 capitalisation_policy = upper
