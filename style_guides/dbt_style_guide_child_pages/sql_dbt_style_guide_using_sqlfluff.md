@@ -1,6 +1,6 @@
 # SQL/dbt Style Guide using SQLFluff
 
-:bulb: The purpose of this page is to describe how SQLFluff is to be used to enforce the SQL styling and formatting.
+:bulb: The purpose of this page is to describe how SQLFluff is to be used to enforce SQL styling and formatting.
 
 ---
 
