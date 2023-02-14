@@ -32,7 +32,7 @@ Listed below is the standard set of VSCode extensions to be used by the team:
 | 6 | [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) | Makes it easy to build, manage, and deploy containerized applications from Visual Studio Code. It also provides one-click debugging of Node.js, Python, and .NET Core inside a container. | Should |  |
 | 7 | [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme) | Material Design Icons for Visual Studio Code | Could |  |
 
-## WIP - Python-Specific Extensions to Help Streamline End-User Development
+## Python-Specific Extensions to Help Streamline End-User Development
 
 |    | VSCode Extension | Description                  | Criticality<br/>(Must, Should, Could, Want) | Comments |
 | -- | -------| ----------------------------- | --- | --- |
