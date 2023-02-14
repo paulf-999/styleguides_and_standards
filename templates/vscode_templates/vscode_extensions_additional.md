@@ -36,5 +36,5 @@ Listed below is the standard set of VSCode extensions to be used by the team:
 
 |    | VSCode Extension | Description                  | Criticality<br/>(Must, Should, Could, Want) | Comments |
 | -- | -------| ----------------------------- | --- | --- |
-| 1 | [Python indent](Python indent) | Ensures your code is correctly indented during code development. | Should |  |
+| 1 | [Python indent](https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent) | Ensures your code is correctly indented during code development. | Should |  |
 | 2 | [Python Type Hint](https://marketplace.visualstudio.com/items?itemName=njqdev.vscode-python-typehint) | Provides type hint auto-completion for Python, with completion items for:<br/>• Built-in types,<br/>• Classes,<br/>• and the typing module.| Should |  |
