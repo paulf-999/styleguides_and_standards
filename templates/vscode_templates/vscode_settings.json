@@ -1,0 +1,99 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.colorCustomizations": {
+    },
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "terminal.integrated.env.osx": {
+        "PATH": "...:/usr/bin:/bin:..."
+    },
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "editor.renderWhitespace": "all",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.flake8Args": [
+        "--extend-ignore=F401",
+        "--max-line-length=200"
+    ],
+    "files.trimTrailingWhitespace": true,
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--line-length",
+        "200"
+    ],
+    "python.formatting.blackPath": "black",
+    "[python]": {
+        "editor.formatOnSave": true
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+    "redhat.telemetry.enabled": false,
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "yaml.customTags": [
+        "!And",
+        "!And sequence",
+        "!If",
+        "!If sequence",
+        "!Not",
+        "!Not sequence",
+        "!Equals",
+        "!Equals sequence",
+        "!Or",
+        "!Or sequence",
+        "!FindInMap",
+        "!FindInMap sequence",
+        "!Base64",
+        "!Join",
+        "!Join sequence",
+        "!Cidr",
+        "!Ref",
+        "!Sub",
+        "!Sub sequence",
+        "!GetAtt",
+        "!GetAZs",
+        "!ImportValue",
+        "!ImportValue sequence",
+        "!Select",
+        "!Select sequence",
+        "!Split",
+        "!Split sequence"
+    ],
+    "yaml.schemas": {},
+    "json.schemas": [],
+    "python.defaultInterpreterPath": "/usr/local/bin/python3",
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.suggest.showMethods": true,
+    "editor.suggest.preview": true,
+    "editor.acceptSuggestionOnEnter": "on",
+    "editor.snippetSuggestions": "top",
+    "files.associations": {
+        "*.sql": "jinja-sql"
+    },
+    "markdownlint.config": {
+        "MD033": false,
+        "MD037": false
+    },
+    "markdownlint.run": "onSave",
+    "editor.minimap.enabled": false,
+    "cSpell.language": "en-GB",
+    "cSpell.ignoreWords": [
+        "dagrun",
+        "tbls",
+        "pyyaml",
+        "sqlfluff",
+        "jinja",
+        "pylint",
+        "ipynb",
+        "Pylance",
+        "isort",
+        "color",
+        "docstrings",
+        "Meslo"
+    ]
+}
