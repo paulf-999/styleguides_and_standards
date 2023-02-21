@@ -14,7 +14,6 @@ repos:
     -   id: double-quote-string-fixer # replaces double quoted strings with single quoted strings.
     -   id: end-of-file-fixer # ensures that a file is either empty, or ends with one newline.
     -   id: name-tests-test # verifies that test files are named correctly, e.g.: --pytest (the default): ensure tests match .*_test\.py
-    -   id: requirements-txt-fixer # sorts entries in requirements.txt.
     -   id: sort-simple-yaml # Sorts simple YAML files which consist only of top-level keys, preserving comments and blocks.
     -   id: trailing-whitespace # trims trailing whitespace.
         language_version: python3

@@ -1,48 +1,48 @@
-
-# Airflow-Related Libraries
-apache-airflow
+# dbt-Related Libraries
+snowflake-connector-python
+dbt-snowflake
+sqlfluff-templater-dbt
+shandy-sqlfmt[jinjafmt]
 
 # Commonly Used/CLI Libraries
 awscliv2
+boto3
+j2cli
+pre-commit
+pytest
+pyyaml
+urllib3
+s3fs
+virtualenv
+virtualenvwrapper
+wget
+yq
 
 # Code Quality Libraries
 black
-boto3
-dbt-snowflake
-
-# General Purpose/Other Libraries
-diagrams
-
-# Database-Related Libraries
-duckdb
-Faker
 flake8
-gunicorn
-humanfriendly
-j2cli
+pylint
+sqlfluff
 
 # File Parsing Libraries
 numpy
 openpyxl
 pandas
-pendulum
-pre-commit
-pyarrow
-pylint
-pylint-airflow
+
+# Database-Related Libraries
+duckdb
 pymssql
 pyodbc
-pytest
-pyyaml
-s3fs
-shandy-sqlfmt[jinjafmt]
-# dbt-Related Libraries
-snowflake-connector-python
 SQLAlchemy
-sqlfluff
-sqlfluff-templater-dbt
-urllib3
-virtualenv
-virtualenvwrapper
-wget
-yq
+
+# Airflow-Related Libraries
+apache-airflow
+gunicorn
+pendulum
+pyarrow
+pylint-airflow
+
+# General Purpose/Other Libraries
+diagrams
+Faker
+humanfriendly
