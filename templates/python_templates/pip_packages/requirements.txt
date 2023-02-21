@@ -1,18 +1,27 @@
+
+# Airflow-Related Libraries
 apache-airflow
+
+# Commonly Used/CLI Libraries
 awscliv2
+
+# Code Quality Libraries
 black
 boto3
 dbt-snowflake
+
+# General Purpose/Other Libraries
 diagrams
+
+# Database-Related Libraries
 duckdb
 Faker
 flake8
 gunicorn
 humanfriendly
-humanize
 j2cli
-jinja2
-jq
+
+# File Parsing Libraries
 numpy
 openpyxl
 pandas
@@ -26,6 +35,8 @@ pyodbc
 pytest
 pyyaml
 s3fs
+shandy-sqlfmt[jinjafmt]
+# dbt-Related Libraries
 snowflake-connector-python
 SQLAlchemy
 sqlfluff
