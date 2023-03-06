@@ -66,3 +66,9 @@ repos:
         args: [-s, .markdownlint.rb]
       - id: shellcheck  # Ensure shell scripts conform to shellcheck
       - id: shfmt  # Check shell style with shfmt
+
+  - repo: https://github.com/aws-cloudformation/cfn-lint
+    rev: v0.69.1  # The version of cfn-lint to use
+    hooks:
+      - id: cfn-python-lint # linter for cfn (yaml) templates
+        files: path/to/cfn/dir/.*\.(json|yml|yaml)$
