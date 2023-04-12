@@ -46,6 +46,7 @@ repos:
           - id: sqlfluff-lint # lints sql files with `SQLFluff`
             args: [--dialect, snowflake, --disregard-sqlfluffignores]
             additional_dependencies: [dbt-core==1.3, dbt-snowflake==1.3, sqlfluff-templater-dbt==2.0.2]
+
   # - repo: https://github.com/dbt-checkpoint/dbt-checkpoint
   # - repo: https://github.com/Montreal-Analytics/dbt-gloss
   #   rev: 1.0.1  # used to ensure that our dbt standards are upheld
