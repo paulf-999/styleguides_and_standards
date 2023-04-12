@@ -1,24 +1,32 @@
 {
   "[python]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true
   },
   "cSpell.ignoreWords": [
+    "color",
     "dagrun",
+    "docstrings",
+    "ipynb",
+    "isort",
+    "jinja",
+    "jbloggs",
     "tbls",
+    "meslo",
+    "nodq",
     "parseable",
+    "Pylance",
+    "pylint",
     "pyyaml",
     "sqlfluff",
-    "jinja",
-    "pylint",
-    "ipynb",
-    "Pylance",
-    "isort",
-    "color",
-    "docstrings",
-    "Meslo"
+    "templater",
+    "vars"
   ],
   "cSpell.language": "en-GB",
+  "dbt.queryLimit": 30,
+  "dbt.versionCheck": "neither",
   "editor.acceptSuggestionOnEnter": "on",
+  "editor.formatOnSave": true,
   "editor.minimap.enabled": false,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.snippetSuggestions": "top",
@@ -26,6 +34,7 @@
   "editor.suggest.showMethods": true,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
+  "extensions.ignoreRecommendations": true,
   "files.associations": {
     "*.sql": "jinja-sql"
   },
@@ -42,6 +51,7 @@
   ],
   "python.formatting.blackPath": "black",
   "python.formatting.provider": "black",
+  "python.interpreter.infoVisibility": "always",
   "python.linting.flake8Args": [
     "--extend-ignore=F401",
     "--max-line-length=200"
@@ -54,6 +64,8 @@
     "PATH": "...:/usr/bin:/bin:..."
   },
   "terminal.integrated.fontFamily": "MesloLGS NF",
+  "vsicons.dontShowNewVersionMessage": true,
+  "window.zoomLevel": -1,
   "workbench.iconTheme": "material-icon-theme",
   "yaml.customTags": [
     "!And",
