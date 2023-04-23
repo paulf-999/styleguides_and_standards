@@ -4,7 +4,7 @@ The purpose of this page is to describe a list of standard Python libraries to b
 
 Note: I recommend first installing the dbt packages listed below, due to dependencies caused by the library [snowflake-connector-python](https://pypi.org/project/snowflake-connector-python/).
 
-## dbt-Releated libraries
+## dbt-Related libraries
 
 | No. | Python Library Name            | Summary                               |
 |-----|--------------------------------|---------------------------------------|
