@@ -1,4 +1,4 @@
-# Python Packages
+# Python Libraries
 
 The purpose of this page is to describe a list of standard Python libraries to be installed by team end-users.
 
