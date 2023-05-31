@@ -108,4 +108,4 @@ repos:
       rev: 1.4.0
       hooks:
           - id: interrogate
-            args: [--vv, -i, --fail-under=80]
+            args: [-i, --fail-under=80]
