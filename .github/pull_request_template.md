@@ -10,8 +10,9 @@
 
 Please tick the appropriate option:
 
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
+- [ ] New feature (non-breaking change which adds functionality).
+- [ ] Bug fix (non-breaking change which fixes an issue).
+- [ ] Housekeeping - i.e., tidying up code/content within the git repo.
 
 ---
 
