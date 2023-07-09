@@ -25,7 +25,7 @@ get_ips:
 
 deps: get_ips
 	@echo "----------------------------------------------------------------------------------------------------------------------"
-	@echo -e "${COLOUR_TXT_FMT_OPENING}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip depedency resolver errors.)${COLOUR_TXT_FMT_CLOSING}"
+	@echo "${COLOUR_TXT_FMT_OPENING}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip depedency resolver errors.)${COLOUR_TXT_FMT_CLOSING}"
 	@echo "----------------------------------------------------------------------------------------------------------------------"
 	@virtualenv -p python3 venv; \
 	source venv/bin/activate; \
@@ -33,17 +33,17 @@ deps: get_ips
 
 validate_user_ip: get_ips
 	@echo "------------------------------------------------------------------"
-	@echo -e "${COLOUR_TXT_FMT_OPENING}Target: 'validate_user_ip'. Validate the user inputs.${COLOUR_TXT_FMT_CLOSING}"
+	@echo "${COLOUR_TXT_FMT_OPENING}Target: 'validate_user_ip'. Validate the user inputs.${COLOUR_TXT_FMT_CLOSING}"
 	@echo "------------------------------------------------------------------"
 	# INFO: Verify the user has provided a value for the key 'ENV' in ip/config.yaml
 	@[ "${ENV}" ] || ( echo "\nError: 'ENV' key is empty in ip/config.yaml\n"; exit 1 )
 
 install: get_ips
 	@echo "------------------------------------------------------------------"
-	@echo -e "${COLOUR_TXT_FMT_OPENING}Target: 'install'. Run the setup and install targets.${COLOUR_TXT_FMT_CLOSING}"
+	@echo "${COLOUR_TXT_FMT_OPENING}Target: 'install'. Run the setup and install targets.${COLOUR_TXT_FMT_CLOSING}"
 	@echo "------------------------------------------------------------------"
 
 clean:
 	@echo "------------------------------------------------------------------"
-	@echo -e "${COLOUR_TXT_FMT_OPENING}Target 'clean'. Remove any redundant files, e.g. downloads.${COLOUR_TXT_FMT_CLOSING}"
+	@echo "${COLOUR_TXT_FMT_OPENING}Target 'clean'. Remove any redundant files, e.g. downloads.${COLOUR_TXT_FMT_CLOSING}"
 	@echo "------------------------------------------------------------------"

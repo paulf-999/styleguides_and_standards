@@ -25,16 +25,16 @@ get_ips:
 
 deps: get_ips
 	@echo "----------------------------------------------------------------------------------------------------------------------"
-	@echo -e "${COLOUR_TXT_FMT_OPENING}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip depedency resolver errors.)${COLOUR_TXT_FMT_CLOSING}"
+	@echo "${COLOUR_TXT_FMT_OPENING}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip depedency resolver errors.)${COLOUR_TXT_FMT_CLOSING}"
 	@echo "----------------------------------------------------------------------------------------------------------------------"
 	pip3 install yq -q
 
 install: get_ips
 	@echo "------------------------------------------------------------------"
-	@echo -e "${COLOUR_TXT_FMT_OPENING}Target: 'install'. Run the setup and install targets.${COLOUR_TXT_FMT_CLOSING}"
+	@echo "${COLOUR_TXT_FMT_OPENING}Target: 'install'. Run the setup and install targets.${COLOUR_TXT_FMT_CLOSING}"
 	@echo "------------------------------------------------------------------"
 
 clean:
 	@echo "------------------------------------------------------------------"
-	@echo -e "${COLOUR_TXT_FMT_OPENING}Target 'clean'. Remove any redundant files, e.g. downloads.${COLOUR_TXT_FMT_CLOSING}"
+	@echo "${COLOUR_TXT_FMT_OPENING}Target 'clean'. Remove any redundant files, e.g. downloads.${COLOUR_TXT_FMT_CLOSING}"
 	@echo "------------------------------------------------------------------"

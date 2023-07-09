@@ -21,7 +21,7 @@ repos:
           - id: trailing-whitespace # trims trailing whitespace.
       # Git hooks
           - id: no-commit-to-branch # prevents users from pushing changes to specific (protected) branches
-            args: [--branch, master, --pattern, release/.*]
+            args: [--branch, main, --pattern, release/.*]
           - id: check-merge-conflict # checks for files that contain merge conflict strings.
       # JSON hooks
           - id: check-json # checks json files for parseable syntax.
@@ -46,6 +46,12 @@ repos:
             # in dbt v1.4 there is a breaking change that causes the package 'sqlfluff-templater-dbt' to fail
             additional_dependencies: [dbt-core==1.3, dbt-snowflake==1.3, sqlfluff-templater-dbt==2.0.2]
 
+    # Dockerfile linter
+    - repo: https://github.com/hadolint/hadolint
+      rev: v2.12.0
+      hooks:
+          - id: hadolint
+
   # - repo: https://github.com/dbt-checkpoint/dbt-checkpoint
   #   rev: 1.0.1  # used to ensure that our dbt standards are upheld
   #   hooks:
@@ -60,7 +66,7 @@ repos:
       rev: 3.0.0
       hooks:
           - id: shellcheck # Ensure shell scripts conform to shellcheck
-          # - id: shfmt # Check shell style with shfmt - TODO: troubleshoot
+
   ######################################################################################################################
   # YAML hooks
   ######################################################################################################################

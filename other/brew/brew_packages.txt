@@ -1,6 +1,7 @@
 autoconf
 awscli
 coreutils
+dos2unix
 freetds
 gdbm
 gettext
