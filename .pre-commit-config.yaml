@@ -55,6 +55,12 @@ repos:
   #       args: ["--manifest", "example_generated_dbt_project/target/manifest.json", "--tests", "unique=1", "not_null=1", "--"]
   #     - id: check-source-table-has-description
 
+  # Shell script hooks
+    - repo: https://github.com/jumanjihouse/pre-commit-hooks
+      rev: 3.0.0
+      hooks:
+          - id: shellcheck # Ensure shell scripts conform to shellcheck
+          # - id: shfmt # Check shell style with shfmt - TODO: troubleshoot
   ######################################################################################################################
   # YAML hooks
   ######################################################################################################################
@@ -108,6 +114,7 @@ repos:
   ######################################################################################################################
   # My custom Git branch validation hook
   ######################################################################################################################
+  # TODO: troubleshoot execution for both Mac & Windows
     - repo: local
       hooks:
           - id: git_branch_name_validation

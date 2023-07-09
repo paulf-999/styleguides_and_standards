@@ -1,8 +1,50 @@
 # Python Style Guide
 
-Here's a Python style guide that follows the commonly accepted conventions and best practices:
+Here is a Python style guide following commonly accepted conventions and best practices.
+
+---
+
+## Contents
+
+1. Naming Conventions
+2. Code Layout
+3. String Formatting
+4. Function and Method Definitions
+5. Comments and Docstrings
+6. Error Handling
+7. General Guidelines
+
+---
+
+> ℹ️ **Summary: Use Python Linters and Automatters to Facilitate the Implementation of Coding Standards**
+>
+> * Implementing the below styles/coding standards requires proactive efforts from end users.
+> * I recommend teams use Linters and code autoformatters to maintain code quality and standardised formatting.
+> * For more information, see Python - Linting and Auto-Formatting.
+
 
 ## 1. Naming Conventions
+
+In summary:
+
+1. Use `snake_case` for all module, package, function and variable names.
+2. Use `CamelCase` for classes.
+3. Use `SCREAMING_SNAKE_CASE` for constants.
+
+<details>
+
+<summary>What is `snake_case`?</summary>
+
+snake_case combines words by replacing each space with an underscore (_), and all letters are lowercase, as follows:
+
+Raw: user login count
+Snake case: user_login_count
+* The following link explains the differences between different case styles.
+* One of the benefits of snake_case is that many of the allowed characters are compatible across S3 and Snowflake.
+
+</details>
+
+### Case Style Specification
 
 * Module names: `lowercase_with_underscores.py`
 * Package names: `lowercase_with_underscores`
@@ -10,6 +52,25 @@ Here's a Python style guide that follows the commonly accepted conventions and b
 * Function and method names: `lowercase_with_underscores`
 * Variable names: `lowercase_with_underscores`
 * Constants: `UPPERCASE_WITH_UNDERSCORES`
+
+### 1.2. Avoid Abbreviations
+
+• Function names, variables and filenames should all be meaningful, descriptive, and eschew abbreviations.
+
+<details>
+
+<summary>For example (click to expand)</summary>
+
+Good
+def load_customer_data():
+Bad
+def load_data():
+
+</details>
+
+•	Don’t use abbreviations that are ambiguous to readers outside your projects
+•	Don’t abbreviate by deleting letters within a word
+
 
 ---
 
