@@ -1,0 +1,18 @@
+#--------------------------------------------------------------------
+# Tempalte .zshrc args below
+# Set the default editor (change to your preferred editor)
+export EDITOR="vi"
+
+# Add useful aliases
+alias ll='ls -alF'
+alias grep='grep --color=auto'
+alias reload='source ~/.zshrc'
+
+# Add directories to your PATH variable
+export PATH="/usr/local/bin:$PATH"
+
+# Set custom environment variables
+export MY_VARIABLE="hello"
+
+# Add any other custom configurations or plugins below this line
+#--------------------------------------------------------------------

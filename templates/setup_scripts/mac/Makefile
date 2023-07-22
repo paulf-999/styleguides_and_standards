@@ -18,6 +18,7 @@ deps:
 	@echo "----------------------------------------------------------------------------------------------------------------------"
 	@#${PIP_INSTALL_CMD} -q -r requirements.txt
 	@cd ../../../reference/zsh_and_ohmyzsh && ./install_zsh_and_ohmyzsh.sh
+	@sh src/sh/prepend_template_zshrc.sh
 
 install:
 	@echo "------------------------------------------------------------------"
