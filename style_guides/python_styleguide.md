@@ -1,203 +1,144 @@
-# Python Style Guide / Coding Standards
+# Python Style Guide
 
-This style guide is a list of do’s and don’ts for Python data pipeline development.
+Here is a Python style guide following commonly accepted conventions and best practices.
 
 ---
 
 ## Contents
 
-1. Naming conventions and standards
-2. General guidelines.
-3. Linting, autoformatting and security plugins
+1. Naming Conventions
+2. Code Layout
+3. String Formatting
+4. Function and Method Definitions
+5. Comments and Docstrings
+6. Error Handling
+7. General Guidelines
 
 ---
 
-## 1. Naming conventions and standards
+> ℹ️ **Summary: Use Python Linters and Automatters to Facilitate the Implementation of Coding Standards**
+>
+> * Implementing the below styles/coding standards requires proactive efforts from end users.
+> * I recommend teams use Linters and code autoformatters to maintain code quality and standardised formatting.
+> * For more information, see Python - Linting and Auto-Formatting.
 
-### 1.1. Use the `snake_case` naming convention
 
-* All code (objects, variables etc) including column names and associated objects created should be named using `snake_case`
-* Snake case combines words by replacing each space with an underscore (_) and all letters are lower case, as follows:
+## 1. Naming Conventions
 
-**Raw**: user login count
+In summary:
 
-**Snake case**: `user_login_count`
+1. Use `snake_case` for all module, package, function and variable names.
+2. Use `CamelCase` for classes.
+3. Use `SCREAMING_SNAKE_CASE` for constants.
 
-* [The following link](https://betterprogramming.pub/string-case-styles-camel-pascal-snake-and-kebab-case-981407998841) explains the differences between different case styles.
-* One of the benefits of Snake case is that many of the allowed characters are compatible across S3 and Snowflake
+<details>
 
-### 1.2. Naming of functions, variables and filenames
+<summary>What is `snake_case`?</summary>
 
-* Function names, variables and filenames should all be descriptive, eschew abbreviation
-* In particular, don’t use abbreviations that are ambiguous to readers outside your projects
-* Also don’t abbreviate by deleting letters within a word
+snake_case combines words by replacing each space with an underscore (_), and all letters are lowercase, as follows:
 
-### 1.3. String formatting: use f-strings
+Raw: user login count
+Snake case: user_login_count
+* The following link explains the differences between different case styles.
+* One of the benefits of snake_case is that many of the allowed characters are compatible across S3 and Snowflake.
 
-* `f-strings` should be used where possible, they provide a clean way to format strings
-* Avoid using `str().format`
-* Detailed examples of `f-strings` in action can be found [here](https://realpython.com/python-f-strings/).
+</details>
 
-### 1.4. Comments and Docstrings
+### Case Style Specification
 
-#### 1.4.1. Comments
+* Module names: `lowercase_with_underscores.py`
+* Package names: `lowercase_with_underscores`
+* Class names: `CamelCase`
+* Function and method names: `lowercase_with_underscores`
+* Variable names: `lowercase_with_underscores`
+* Constants: `UPPERCASE_WITH_UNDERSCORES`
 
-Comments **SHOULD** detail **why** something is being done, as well as **what** is occurring.
+### 1.2. Avoid Abbreviations
 
-##### Example of *good* commenting
+• Function names, variables and filenames should all be meaningful, descriptive, and eschew abbreviations.
 
-```python
-# Display Ads are not included in the Product Count due to them being…
-# This business rule was requested by the … team for these reasons …
-```
+<details>
 
-##### Example of *bad* commenting
+<summary>For example (click to expand)</summary>
 
-``` # Looping through list, setting Product Count to 0 where Type == ‘Display’ ```
+Good
+def load_customer_data():
+Bad
+def load_data():
 
-##### `#TODO` keyword
+</details>
 
-* There are times when not everything can be built into a pipeline within the given time frames
-* The `#TODO` keyword **MAY** be used to help future you
+•	Don’t use abbreviations that are ambiguous to readers outside your projects
+•	Don’t abbreviate by deleting letters within a word
 
-#### 1.4.2. Docstrings
-
-##### Description
-
-All pipelines and functions should start with a Docstring, explaining **what** the pipeline / function is, **what** it does and **why**.
-
-##### Business logic / rules
-
-* Business rules / logic should be explained at a high-level, focussing on **why** something is happening
-* This is to help data engineers who open your pipelines in 1-2 years team and try to decipher what business rules exist and why they are being applied
-* If a pipeline or transform doesn’t have any business rules, then you can leave this blank
-
-###### Example **good** business logic / rule comments
-
-```python
-
-# Product codes X, Y and Z are excluded from metric revenue as hey are considered free ads
-# Finance has requested for these to be excluded
-
-```
-
-###### Example **bad** business logic / rule comments
-
-``` # Dim abc inner joins to Dim xyz and selects all fields ```
-
-##### Parameters
-
-Parameters required by the pipeline should be listed along with a description of what they are
-
-##### Example Doc String
-
-```python
-"""
-Description:
-This pipeline is a sample pipeline, at the top of each pipeline we explain what the pipeline is and what it does
-Business rules / logic:
-Detail business logic at a high-level that might not be visible at first glance to the developer
-E.g. Test Accounts are excluded from this pipeline
-Parameters:
-input_file_raw:
-    Raw customer table
-output_file_path:
-    Output S3 file
-
-Example usage:
-    Include example usage if it is a global transform and the function can be used in multiple different ways.
-    This section is not required for local transforms.
-"""
-```
 
 ---
 
-## 2. General guidelines
+## 2. Code Layout
 
-### 2.1. Code readability and effective white spacing
-
-Code **MUST** be spaced logically to maintain readability.
-
-#### Example of **good** code readability
-
-```python
-# Pipeline parameters
-src_bucket = self.s3_bucket_src
-logging.info(f”source_bucket = {src_bucket}”)
-
-target_bucket = self.s3_bucket_target
-logging.info(f”target_bucket = {target_bucket}”)
-```
-
-#### Example of bad **code** readability
-
-```python
-# Pipeline parameters
-src_bucket = self.s3_bucket_src
-logging.info(f”source_bucket = {src_bucket}”)
-target_bucket = self.s3_bucket_target
-logging.info(f”target_bucket = {target_bucket}”)
-```
-
-### 2.2. Don’t capture change history / log
-
-* The change history of a data pipeline SHOULD NOT be stored in the code itself
-* Manually maintaining the change history in the code itself is unreliable, as it doesn’t show the actual change that has occurred and isn’t enforceable
-  * The change history is captured by the version control system (e.g. Git) for each commit that’s occurred. All changes that are pushed to development and production are captured and diffs of those changes are available
-* An example of the anti-pattern that SHOULD NOT be used:
-
-```python
-# Create by: Joe Bloggs
-# Date: 01-01-2021
-# Purpose: Eg transformation script
-
-# Change log:
-# Date: 02-01-2021
-# Change Made By: Donald Duck
-# Change Description: Small change to JSON file read in
-```
-
-### 2.3. Style guide decisions
-
-Consider reading the [Google Python style guide](https://google.github.io/styleguide/pyguide.html), it gives great examples with do’s and don’t on writing clean code.
+* Use 4 spaces for indentation (avoid tabs).
+* Limit lines to a maximum of 79 characters.
+* Use a newline after imports and before the class or function definition.
+* Separate methods and classes with two blank lines.
+* Use a single space around operators and after commas.
 
 ---
 
-## 3. Linting, autoformatting and security plugins
+## 3. Imports
 
-* Standard linting and code formatting plugins can be used to maintain code quality and standardised formatting
-* Pipelines should all have ‘problems’ identified by the plugins resolved prior to deployment to development or production systems
-* Code not meeting these standards will be rejected by the CICD pipeline and the build will fail
+* Import modules on separate lines.
+* Use absolute imports whenever possible.
+* Avoid wildcard imports (`from module import *`).
+* Place imports in the following order: standard library modules, third-party modules, local modules.
 
-### 3.1.Setup Instructions (for VSCode)
+---
 
-#### 3.1.1. VSCode Extensions
+## 4. Comments
 
-Install the following VSCode extensions (plugins):
+* Use inline comments sparingly and keep them concise.
+* Use docstrings to document modules, classes, methods, and functions.
+* Write clear, self-explanatory code and minimize the need for comments.
 
-* Docker
-* Bracket Pair Colorizer 2
+---
 
-#### 3.1.2. Linting, Security and Autoformatting Plugin Settings
+## 5. Strings
 
-* Within VSCode, go to Settings -> Open Settings (JSON) – Icon Top Right
-* From there, add the following additional settings:
+* Use single quotes for string literals.
+* Use double quotes inside strings to avoid escaping.
+* Use triple quotes for docstrings and multi-line strings.
 
-```bash
-"python.linting.flake8Enabled": true,
-"python.linting.banditEnabled": true,
-"python.linting.pylintEnabled": false,
-"python.linting.flake8Args": [
-    "--extend-ignore=F401"
-],
-"files.trimTrailingWhitespace": true,
-"python.formatting.provider": "black",
-"python.formatting.blackArgs": [
-    "--line-length",
-    "200"
-],
-"python.formatting.blackPath": "black",
-"[python]": {
-    "editor.formatOnSave": true,
-}
-```
+---
+
+## 6. Function and Method Definitions
+
+* Define function parameters without spaces around the equals sign.
+* Use a single space after the comma in function definitions.
+* Place default arguments at the end of the argument list.
+
+---
+
+## 7. Control Structures
+
+* Use a space after commas in control structures (e.g., `if`, `for`, `while`).
+* Avoid unnecessary parentheses around conditions.
+* Use a blank line before a `return` statement if it improves readability.
+
+---
+
+## 8. Error Handling
+
+* Prefer specific exceptions over catching all exceptions (`except Exception:`).
+* Use `try-except-else` blocks when possible.
+* Use `finally` blocks sparingly and only when necessary.
+
+---
+
+## 9. Miscellaneous
+
+* Use meaningful variable and function names.
+* Avoid using mutable types as default arguments.
+* Use list comprehensions and generator expressions for concise and readable code.
+* Follow [PEP 8 guidelines](https://pep8.org/) for any conventions not covered here.
+
+
+Remember, consistency is key when it comes to style guides. It's essential to follow the established style within a project or organization to maintain code readability and maintainability.
