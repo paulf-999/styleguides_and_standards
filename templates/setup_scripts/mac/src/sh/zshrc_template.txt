@@ -4,6 +4,8 @@
 export EDITOR="vi"
 
 # Add useful aliases
+alias pip=pip3
+
 alias ll='ls -alF'
 alias grep='grep --color=auto'
 alias reload='source ~/.zshrc'
@@ -13,6 +15,6 @@ export PATH="/usr/local/bin:$PATH"
 
 # Set custom environment variables
 export MY_VARIABLE="hello"
-
+#--------------------------------------------------------------------
 # Add any other custom configurations or plugins below this line
 #--------------------------------------------------------------------

@@ -16,9 +16,11 @@ deps:
 	@echo "----------------------------------------------------------------------------------------------------------------------"
 	@echo "${COLOUR_TXT_FMT_OPENING}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip depedency resolver errors.)${COLOUR_TXT_FMT_CLOSING}"
 	@echo "----------------------------------------------------------------------------------------------------------------------"
-	@#${PIP_INSTALL_CMD} -q -r requirements.txt
+	@sh src/sh/mac_packages.sh
 	@cd ../../../reference/zsh_and_ohmyzsh && ./install_zsh_and_ohmyzsh.sh
 	@sh src/sh/prepend_template_zshrc.sh
+	# wip
+	@#${PIP_INSTALL_CMD} -q -r requirements.txt
 
 install:
 	@echo "------------------------------------------------------------------"
@@ -29,3 +31,6 @@ clean:
 	@echo "------------------------------------------------------------------"
 	@echo "${COLOUR_TXT_FMT_OPENING}Target 'clean'. Remove any redundant files, e.g. downloads.${COLOUR_TXT_FMT_CLOSING}"
 	@echo "------------------------------------------------------------------"
+
+a:
+	sh src/sh/mac_packages.sh

@@ -26,6 +26,7 @@ azure.identity
 azure.keyvault.secrets
 
 # Code Quality Libraries
+soda-core-snowflake
 black
 flake8
 pylint
