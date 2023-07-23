@@ -11,6 +11,7 @@ alias reload='source ~/.zshrc'
 
 # Add directories to your PATH variable
 export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/Library/Python/3.9/bin:$PATH"
 
 # Enable history expansion with '!' at the beginning
 setopt hist_expand
