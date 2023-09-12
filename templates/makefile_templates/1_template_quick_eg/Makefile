@@ -13,9 +13,6 @@ SHELL = /bin/sh
 #=======================================================================
 .EXPORT_ALL_VARIABLES:
 
-CONFIG_FILE := config.yaml # input config file
-PIP_INSTALL_CMD=pip3 install -q --disable-pip-version-check
-
 # setup colour formatting
 RED := '\033[0;31m'
 YELLOW := '\033[0;33m'
@@ -25,24 +22,17 @@ CYAN := '\033[0;36m'
 COLOUR_OFF := '\033[0m' # Text Reset
 #=======================================================================
 
-.PHONY = installations deps install clean get_ips
+.PHONY = installations deps install clean
 
 installations: deps install clean
 
-deps: get_ips
+deps:
 	@echo "----------------------------------------------------------------------------------------------------------------------"
 	@echo "${YELLOW}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip depedency resolver errors.)${COLOUR_OFF}"
 	@echo "----------------------------------------------------------------------------------------------------------------------"
 	@${PIP_INSTALL_CMD} -q -r requirements.txt
 
-validate_user_ip: get_ips
-	@echo "------------------------------------------------------------------"
-	@echo "${YELLOW}Target: 'validate_user_ip'. Validate the user inputs.${COLOUR_OFF}"
-	@echo "------------------------------------------------------------------"
-	# INFO: Verify the user has provided a value for the key 'ENV' in ip/config.yaml
-	@[ "${ENV}" ] || ( echo "\nError: 'ENV' key is empty in ip/config.yaml\n"; exit 1 )
-
-install: get_ips
+install:
 	@echo "------------------------------------------------------------------"
 	@echo "${YELLOW}Target: 'install'. Run the setup and install targets.${COLOUR_OFF}"
 	@echo "------------------------------------------------------------------"
@@ -51,8 +41,3 @@ clean:
 	@echo "------------------------------------------------------------------"
 	@echo "${YELLOW}Target 'clean'. Remove any redundant files, e.g. downloads.${COLOUR_OFF}"
 	@echo "------------------------------------------------------------------"
-
-get_ips:
-	@# Target: 'get_ips'. Get input args from config.json
-	$(eval ENV=$(shell yq '.general_params.env | select( . != null )' ${CONFIG_FILE}))
-	$(eval CURRENT_DIR=$(shell pwd))
