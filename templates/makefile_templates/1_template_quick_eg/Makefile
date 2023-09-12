@@ -30,7 +30,7 @@ deps:
 	@echo "----------------------------------------------------------------------------------------------------------------------"
 	@echo "${YELLOW}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip depedency resolver errors.)${COLOUR_OFF}"
 	@echo "----------------------------------------------------------------------------------------------------------------------"
-	@${PIP_INSTALL_CMD} -q -r requirements.txt
+	@echo "deps called"
 
 install:
 	@echo "------------------------------------------------------------------"
