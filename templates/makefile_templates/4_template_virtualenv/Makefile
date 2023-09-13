@@ -69,3 +69,9 @@ validate_user_ip: get_ips
 	# INFO: Verify the user has provided a value for the key 'ENV' in ip/config.yaml
 	@[ "${ENV}" ] || ( echo "\nError: 'ENV' key is empty in ip/config.yaml\n"; exit 1 )
 .PHONY: validate_user_ip
+
+# Phony targets
+.PHONY = all deps install test clean
+
+# .PHONY tells Make that these targets don't represent files
+# This prevents conflicts with any files named "all" or "clean"
