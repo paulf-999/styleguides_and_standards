@@ -1,3 +1,5 @@
+SHELL = /bin/sh
+
 #================================================================
 # Usage
 #================================================================
@@ -23,20 +25,36 @@ CYAN := \033[0;36m
 COLOUR_OFF := \033[0m # Text Reset
 #=======================================================================
 
-.PHONY = installations deps clean install get_ips validate_user_ip
-
-installations: deps install clean
+#=======================================================================
+# Targets
+#=======================================================================
+all: deps install clean
+.PHONY: all
 
 deps: get_ips
 	@echo "----------------------------------------------------------------------------------------------------------------------"
 	@echo "${YELLOW}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip depedency resolver errors.)${COLOUR_OFF}"
 	@echo "----------------------------------------------------------------------------------------------------------------------"
 	@${PIP_INSTALL_CMD} -q -r requirements.txt
+.PHONY: deps
 
 install: get_ips
 	@echo "------------------------------------------------------------------"
 	@echo "${YELLOW}Target: 'install'. Run the setup and install targets.${COLOUR_OFF}"
 	@echo "------------------------------------------------------------------"
+.PHONY: install
+
+test:
+	@echo "------------------------------------------------------------------"
+	@echo "${YELLOW}Target 'test'. Perform any required tests.${COLOUR_OFF}"
+	@echo "------------------------------------------------------------------"
+.PHONY: test
+
+clean:
+	@echo "------------------------------------------------------------------"
+	@echo "${YELLOW}Target 'clean'. Remove any redundant files, e.g. downloads.${COLOUR_OFF}"
+	@echo "------------------------------------------------------------------"
+.PHONY: clean
 
 #############################################################################################
 # Setup/validation targets: 'get_ips' & 'validate_user_ip'
@@ -53,7 +71,8 @@ validate_user_ip: get_ips
 	# INFO: Verify the user has provided a value for the key 'env' in ip/config.yaml
 	@[ "${ENV}" ] || ( echo "\nError: 'ENV' key is empty in ip/config.yaml\n"; exit 1 )
 
-clean:
-	@echo "------------------------------------------------------------------"
-	@echo "${YELLOW}Target 'clean'. Remove any redundant files, e.g. downloads.${COLOUR_OFF}"
-	@echo "------------------------------------------------------------------"
+# Phony targets
+.PHONY = all deps install test clean
+
+# .PHONY tells Make that these targets don't represent files
+# This prevents conflicts with any files named "all" or "clean"

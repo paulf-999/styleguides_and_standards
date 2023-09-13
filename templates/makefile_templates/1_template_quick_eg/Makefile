@@ -51,7 +51,7 @@ clean:
 .PHONY: clean
 
 # Phony targets
-.PHONY = all deps install clean
+.PHONY = all deps install test clean
 
 # .PHONY tells Make that these targets don't represent files
 # This prevents conflicts with any files named "all" or "clean"

@@ -24,10 +24,10 @@ PURPLE := '\033[0;35m'
 CYAN := '\033[0;36m'
 COLOUR_OFF := '\033[0m' # Text Reset
 #=======================================================================
-
-.PHONY = installations deps install clean get_ips
-
-installations: deps install clean
+# Targets
+#=======================================================================
+all: deps install clean
+.PHONY: all
 
 deps: get_ips
 	@echo "----------------------------------------------------------------------------------------------------------------------"
@@ -36,6 +36,31 @@ deps: get_ips
 	@virtualenv -p python3 venv; \
 	source venv/bin/activate; \
 	pip3 install -r requirements.txt; \
+.PHONY: deps
+
+install: get_ips
+	@echo "------------------------------------------------------------------"
+	@echo "${YELLOW}Target: 'install'. Run the setup and install targets.${COLOUR_OFF}"
+	@echo "------------------------------------------------------------------"
+.PHONY: install
+
+test:
+	@echo "------------------------------------------------------------------"
+	@echo "${YELLOW}Target 'test'. Perform any required tests.${COLOUR_OFF}"
+	@echo "------------------------------------------------------------------"
+.PHONY: test
+
+clean:
+	@echo "------------------------------------------------------------------"
+	@echo "${YELLOW}Target 'clean'. Remove any redundant files, e.g. downloads.${COLOUR_OFF}"
+	@echo "------------------------------------------------------------------"
+.PHONY: clean
+
+get_ips:
+	@# Target: 'get_ips'. Get input args from config.json
+	$(eval ENV=$(shell yq '.general_params.env | select( . != null )' ${CONFIG_FILE}))
+	$(eval CURRENT_DIR=$(shell pwd))
+.PHONY: get_ips
 
 validate_user_ip: get_ips
 	@echo "------------------------------------------------------------------"
@@ -43,18 +68,4 @@ validate_user_ip: get_ips
 	@echo "------------------------------------------------------------------"
 	# INFO: Verify the user has provided a value for the key 'ENV' in ip/config.yaml
 	@[ "${ENV}" ] || ( echo "\nError: 'ENV' key is empty in ip/config.yaml\n"; exit 1 )
-
-install: get_ips
-	@echo "------------------------------------------------------------------"
-	@echo "${YELLOW}Target: 'install'. Run the setup and install targets.${COLOUR_OFF}"
-	@echo "------------------------------------------------------------------"
-
-clean:
-	@echo "------------------------------------------------------------------"
-	@echo "${YELLOW}Target 'clean'. Remove any redundant files, e.g. downloads.${COLOUR_OFF}"
-	@echo "------------------------------------------------------------------"
-
-get_ips:
-	@# Target: 'get_ips'. Get input args from config.json
-	$(eval ENV=$(shell yq '.general_params.env | select( . != null )' ${CONFIG_FILE}))
-	$(eval CURRENT_DIR=$(shell pwd))
+.PHONY: validate_user_ip
