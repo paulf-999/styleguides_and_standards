@@ -35,7 +35,7 @@ deps: get_ips
 	@echo "----------------------------------------------------------------------------------------------------------------------"
 	@virtualenv -p python3 venv; \
 	source venv/bin/activate; \
-	pip3 install -r requirements.txt; \
+	pip3 install -r requirements.txt;
 .PHONY: deps
 
 install: get_ips
