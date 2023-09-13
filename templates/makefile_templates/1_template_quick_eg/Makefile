@@ -39,9 +39,9 @@ install:
 .PHONY: install
 
 test:
-    @echo "------------------------------------------------------------------"
-    @echo "${YELLOW}Target 'test'. Perform any required tests.${COLOUR_OFF}"
-    @echo "------------------------------------------------------------------"
+	@echo "------------------------------------------------------------------"
+	@echo "${YELLOW}Target 'test'. Perform any required tests.${COLOUR_OFF}"
+	@echo "------------------------------------------------------------------"
 .PHONY: test
 
 clean:
