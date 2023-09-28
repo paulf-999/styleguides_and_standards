@@ -48,7 +48,8 @@ The SQLFluff configuration rules that come ‘out of the box’ have been overwr
 # For a full reference of the SQLFluff rules, see https://docs.sqlfluff.com/en/stable/rules.html
 [sqlfluff]
 dialect = snowflake
-templater = dbt # The dbt templater is slower than the jinja templater, as it first compiles the dbt code into data warehouse code. If you don't need to use the dbt templater, uncomment the line below
+templater = dbt
+# The dbt templater is slower than the jinja templater, as it first compiles the dbt code into data warehouse code. If you don't need to use the dbt templater, uncomment the line below
 # templater = jinja
 #-----------------------------------------------------------------------------------
 runaway_limit = 10 # Number of passes to run before admitting defeat

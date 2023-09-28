@@ -29,13 +29,16 @@ COLOUR_OFF := '\033[0m' # Text Reset
 all: deps install clean
 .PHONY: all
 
-deps: get_ips
+deps:
 	@echo "----------------------------------------------------------------------------------------------------------------------"
-	@echo "${YELLOW}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip depedency resolver errors.)${COLOUR_OFF}"
+	@echo "${YELLOW}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip dependency resolver errors.)${COLOUR_OFF}"
 	@echo "----------------------------------------------------------------------------------------------------------------------"
-	@virtualenv -p python3 venv; \
-	source venv/bin/activate; \
-	pip3 install -r requirements.txt;
+	@sudo apt install python3.8-venv > /dev/null 2>&1
+	@if [ -z "$$VIRTUAL_ENV" ]; then \
+		python3 -m venv venv; \
+		chmod +x ./venv/bin/activate; \
+		. venv/bin/activate && pip install -r requirements.txt -q; \
+	fi
 .PHONY: deps
 
 install: get_ips
