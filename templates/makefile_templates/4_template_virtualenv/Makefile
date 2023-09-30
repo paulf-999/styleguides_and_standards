@@ -33,12 +33,9 @@ deps:
 	@echo "----------------------------------------------------------------------------------------------------------------------"
 	@echo "${YELLOW}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip dependency resolver errors.)${COLOUR_OFF}"
 	@echo "----------------------------------------------------------------------------------------------------------------------"
-	@sudo apt install python3.8-venv > /dev/null 2>&1
-	@if [ -z "$$VIRTUAL_ENV" ]; then \
-		python3 -m venv venv; \
-		chmod +x ./venv/bin/activate; \
-		. venv/bin/activate && pip install -r requirements.txt -q; \
-	fi
+
+	@python3 -m venv .venv && chmod +x ./.venv/bin/activate
+	@. ./.venv/bin/activate && pip install -r requirements.txt -q
 .PHONY: deps
 
 install: get_ips
