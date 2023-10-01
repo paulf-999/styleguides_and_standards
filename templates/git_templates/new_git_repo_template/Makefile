@@ -1,40 +1,48 @@
 SHELL = /bin/sh
 
-# Usage:
+#================================================================
+# Usage
+#================================================================
 # make installations	# install the package for the first time, managing dependencies & performing a housekeeping cleanup too
 # make deps		# just install the dependencies
 # make install		# perform the end-to-end install
 # make clean		# perform a housekeeping cleanup
 
-# all: deps install [X, Y, Z...] clean
-
+#=======================================================================
+# Variables
+#=======================================================================
 .EXPORT_ALL_VARIABLES:
-.PHONY = installations deps install clean get_ips
 
-CONFIG_FILE := ip/config.yaml
-# the 2 vars below are just for formatting CLI message output
-COLOUR_TXT_FMT_OPENING := \033[0;33m
-COLOUR_TXT_FMT_CLOSING := \033[0m
+# load variables from separate file
+include config.mk
+#=======================================================================
+# Targets
+#=======================================================================
+all: deps install clean
 
-installations: deps install clean
-
-get_ips:
-	@# Target: 'get_ips'. Get input args from config.json
-	#$(eval ENV=$(shell yq -r '.general_params.env' ${CONFIG_FILE}))
-	$(eval CURRENT_DIR=$(shell pwd))
-
-deps: get_ips
+deps:
 	@echo "----------------------------------------------------------------------------------------------------------------------"
-	@echo "${COLOUR_TXT_FMT_OPENING}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip depedency resolver errors.)${COLOUR_TXT_FMT_CLOSING}"
+	@echo "${YELLOW}Target: 'deps'. Download the relevant pip package dependencies.${COLOUR_OFF}"
 	@echo "----------------------------------------------------------------------------------------------------------------------"
-	pip3 install yq -q
+	@echo "deps called"
 
-install: get_ips
+install:
 	@echo "------------------------------------------------------------------"
-	@echo "${COLOUR_TXT_FMT_OPENING}Target: 'install'. Run the setup and install targets.${COLOUR_TXT_FMT_CLOSING}"
+	@echo "${YELLOW}Target: 'install'. Run the setup and install targets.${COLOUR_OFF}"
+	@echo "------------------------------------------------------------------"
+
+test:
+	@echo "------------------------------------------------------------------"
+	@echo "${YELLOW}Target 'test'. Perform any required tests.${COLOUR_OFF}"
 	@echo "------------------------------------------------------------------"
 
 clean:
 	@echo "------------------------------------------------------------------"
-	@echo "${COLOUR_TXT_FMT_OPENING}Target 'clean'. Remove any redundant files, e.g. downloads.${COLOUR_TXT_FMT_CLOSING}"
+	@echo "${YELLOW}Target 'clean'. Remove any redundant files, e.g. downloads.${COLOUR_OFF}"
 	@echo "------------------------------------------------------------------"
+
+# Phony targets
+.PHONY: all deps install test clean
+
+# .PHONY tells Make that these targets don't represent files
+# This prevents conflicts with any files named "all" or "clean"

@@ -23,35 +23,30 @@ COLOUR_OFF := \033[0m # Text Reset
 # Targets
 #=======================================================================
 all: deps install clean
-.PHONY: all
 
 deps:
 	@echo "----------------------------------------------------------------------------------------------------------------------"
-	@echo "${YELLOW}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip depedency resolver errors.)${COLOUR_OFF}"
+	@echo "${YELLOW}Target: 'deps'. Download the relevant pip package dependencies.${COLOUR_OFF}"
 	@echo "----------------------------------------------------------------------------------------------------------------------"
 	@echo "deps called"
-.PHONY: deps
 
 install:
 	@echo "------------------------------------------------------------------"
 	@echo "${YELLOW}Target: 'install'. Run the setup and install targets.${COLOUR_OFF}"
 	@echo "------------------------------------------------------------------"
-.PHONY: install
 
 test:
 	@echo "------------------------------------------------------------------"
 	@echo "${YELLOW}Target 'test'. Perform any required tests.${COLOUR_OFF}"
 	@echo "------------------------------------------------------------------"
-.PHONY: test
 
 clean:
 	@echo "------------------------------------------------------------------"
 	@echo "${YELLOW}Target 'clean'. Remove any redundant files, e.g. downloads.${COLOUR_OFF}"
 	@echo "------------------------------------------------------------------"
-.PHONY: clean
 
 # Phony targets
-.PHONY = all deps install test clean
+.PHONY: all deps install test clean
 
 # .PHONY tells Make that these targets don't represent files
 # This prevents conflicts with any files named "all" or "clean"

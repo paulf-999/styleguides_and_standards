@@ -1,10 +1,10 @@
 SHELL = /bin/sh
 
-# all: deps install [X, Y, Z...] clean
+
 
 .EXPORT_ALL_VARIABLES:
 
-.PHONY = installations deps install clean get_ips
+.PHONY: installations deps install clean get_ips
 
 installations: deps install clean
 

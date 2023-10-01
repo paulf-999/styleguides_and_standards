@@ -16,18 +16,12 @@ SHELL = /bin/sh
 CONFIG_FILE := config.yaml # input config file
 PIP_INSTALL_CMD=pip3 install -q --disable-pip-version-check
 
-# setup colour formatting
-RED := '\033[0;31m'
-YELLOW := '\033[0;33m'
-GREEN := '\033[0;32m'
-PURPLE := '\033[0;35m'
-CYAN := '\033[0;36m'
-COLOUR_OFF := '\033[0m' # Text Reset
+# load variables from separate file
+include config.mk
 #=======================================================================
 # Targets
 #=======================================================================
 all: deps install clean
-.PHONY: all
 
 deps:
 	@echo "----------------------------------------------------------------------------------------------------------------------"
@@ -36,25 +30,22 @@ deps:
 
 	@python3 -m venv .venv && chmod +x ./.venv/bin/activate
 	@. ./.venv/bin/activate && pip install -r requirements.txt -q
-.PHONY: deps
 
 install: get_ips
 	@echo "------------------------------------------------------------------"
 	@echo "${YELLOW}Target: 'install'. Run the setup and install targets.${COLOUR_OFF}"
 	@echo "------------------------------------------------------------------"
-.PHONY: install
 
 test:
 	@echo "------------------------------------------------------------------"
 	@echo "${YELLOW}Target 'test'. Perform any required tests.${COLOUR_OFF}"
 	@echo "------------------------------------------------------------------"
-.PHONY: test
 
 clean:
 	@echo "------------------------------------------------------------------"
 	@echo "${YELLOW}Target 'clean'. Remove any redundant files, e.g. downloads.${COLOUR_OFF}"
 	@echo "------------------------------------------------------------------"
-.PHONY: clean
+
 
 get_ips:
 	@# Target: 'get_ips'. Get input args from config.json
@@ -71,7 +62,7 @@ validate_user_ip: get_ips
 .PHONY: validate_user_ip
 
 # Phony targets
-.PHONY = all deps install test clean
+.PHONY: all deps install test clean
 
 # .PHONY tells Make that these targets don't represent files
 # This prevents conflicts with any files named "all" or "clean"
