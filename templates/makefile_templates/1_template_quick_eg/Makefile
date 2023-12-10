@@ -12,38 +12,32 @@ SHELL = /bin/sh
 # Variables
 #=======================================================================
 .EXPORT_ALL_VARIABLES:
-# setup colour formatting
-RED := \033[0;31m
-YELLOW := \033[0;33m
-GREEN := \033[0;32m
-PURPLE := \033[0;35m
-CYAN := \033[0;36m
-COLOUR_OFF := \033[0m # Text Reset
+
+# ANSI escape codes for color formatting
+DEBUG := \033[0;36m # cyan (for debug messages)
+INFO := \033[0;32m # green (for informational messages)
+WARNING := \033[0;33m # yellow (for warning messages)
+ERROR := \033[0;31m # red (for error messages)
+CRITICAL := \033[1;31m # bold red (for critical errors)
+COLOUR_OFF := \033[0m # reset text color
+
 #=======================================================================
 # Targets
 #=======================================================================
 all: deps install clean
 
 deps:
-	@echo "----------------------------------------------------------------------------------------------------------------------"
-	@echo "${YELLOW}Target: 'deps'. Download the relevant pip package dependencies.${COLOUR_OFF}"
-	@echo "----------------------------------------------------------------------------------------------------------------------"
+	@echo && echo "${INFO}Called makefile target 'deps'. Create virtualenv with required Python libs.${COLOUR_OFF}" && echo
 	@echo "deps called"
 
 install:
-	@echo "------------------------------------------------------------------"
-	@echo "${YELLOW}Target: 'install'. Run the setup and install targets.${COLOUR_OFF}"
-	@echo "------------------------------------------------------------------"
+	@echo && echo "${INFO}Called makefile target 'install'. Set up GX (Great Expectations) project.${COLOUR_OFF}" && echo
 
 test:
-	@echo "------------------------------------------------------------------"
-	@echo "${YELLOW}Target 'test'. Perform any required tests.${COLOUR_OFF}"
-	@echo "------------------------------------------------------------------"
+	@echo && echo "${INFO}Called makefile target 'test'. Set up GX (Great Expectations) project.${COLOUR_OFF}" && echo
 
 clean:
-	@echo "------------------------------------------------------------------"
-	@echo "${YELLOW}Target 'clean'. Remove any redundant files, e.g. downloads.${COLOUR_OFF}"
-	@echo "------------------------------------------------------------------"
+	@echo && echo "${INFO}Called makefile target 'clean'. Restoring the repository to its initial state.${COLOUR_OFF}" && echo
 
 # Phony targets
 .PHONY: all deps install test clean

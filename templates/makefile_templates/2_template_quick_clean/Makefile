@@ -13,33 +13,25 @@ SHELL = /bin/sh
 #=======================================================================
 .EXPORT_ALL_VARIABLES:
 
-# load variables from separate file
-include config.mk
+# load terminal colour formatting vars from separate file
+include src/make/terminal_colour_formatting.mk
 #=======================================================================
 # Targets
 #=======================================================================
 all: deps install clean
 
 deps:
-	@echo "----------------------------------------------------------------------------------------------------------------------"
-	@echo "${YELLOW}Target: 'deps'. Download the relevant pip package dependencies.${COLOUR_OFF}"
-	@echo "----------------------------------------------------------------------------------------------------------------------"
+	@echo && echo "${INFO}Called makefile target 'deps'. Create virtualenv with required Python libs.${COLOUR_OFF}" && echo
 	@echo "deps called"
 
 install:
-	@echo "------------------------------------------------------------------"
-	@echo "${YELLOW}Target: 'install'. Run the setup and install targets.${COLOUR_OFF}"
-	@echo "------------------------------------------------------------------"
+	@echo && echo "${INFO}Called makefile target 'install'. Set up GX (Great Expectations) project.${COLOUR_OFF}" && echo
 
 test:
-	@echo "------------------------------------------------------------------"
-	@echo "${YELLOW}Target 'test'. Perform any required tests.${COLOUR_OFF}"
-	@echo "------------------------------------------------------------------"
+	@echo && echo "${INFO}Called makefile target 'test'. Set up GX (Great Expectations) project.${COLOUR_OFF}" && echo
 
 clean:
-	@echo "------------------------------------------------------------------"
-	@echo "${YELLOW}Target 'clean'. Remove any redundant files, e.g. downloads.${COLOUR_OFF}"
-	@echo "------------------------------------------------------------------"
+	@echo && echo "${INFO}Called makefile target 'clean'. Restoring the repository to its initial state.${COLOUR_OFF}" && echo
 
 # Phony targets
 .PHONY: all deps install test clean
