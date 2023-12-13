@@ -23,46 +23,26 @@ include config.mk
 #=======================================================================
 all: deps install clean
 
-deps:
-	@echo "----------------------------------------------------------------------------------------------------------------------"
-	@echo "${YELLOW}Target: 'deps'. Download the relevant pip package dependencies (note: ignore the pip dependency resolver errors.)${COLOUR_OFF}"
-	@echo "----------------------------------------------------------------------------------------------------------------------"
-
+deps: get_ips
+	@echo "${INFO}\nCalled makefile target 'deps'. Download any required libraries.${COLOUR_OFF}\n"
+	@echo "${DEBUG}deps called"
 	@python3 -m venv .venv && chmod +x ./.venv/bin/activate
 	@. ./.venv/bin/activate && pip install -r requirements.txt -q
 
 install: get_ips
-	@echo "------------------------------------------------------------------"
-	@echo "${YELLOW}Target: 'install'. Run the setup and install targets.${COLOUR_OFF}"
-	@echo "------------------------------------------------------------------"
+	@echo "${INFO}\nCalled makefile target 'install'. Run the setup & install targets.\n${COLOUR_OFF}"
+
+run:
+	@echo "${INFO}\nCalled makefile target 'run'. Launch service.${COLOUR_OFF}\n"
 
 test:
-	@echo "------------------------------------------------------------------"
-	@echo "${YELLOW}Target 'test'. Perform any required tests.${COLOUR_OFF}"
-	@echo "------------------------------------------------------------------"
+	@echo "${INFO}\nCalled makefile target 'test'. Perform any required tests.${COLOUR_OFF}\n"
 
 clean:
-	@echo "------------------------------------------------------------------"
-	@echo "${YELLOW}Target 'clean'. Remove any redundant files, e.g. downloads.${COLOUR_OFF}"
-	@echo "------------------------------------------------------------------"
-
-
-get_ips:
-	@# Target: 'get_ips'. Get input args from config.json
-	$(eval ENV=$(shell yq '.general_params.env | select( . != null )' ${CONFIG_FILE}))
-	$(eval CURRENT_DIR=$(shell pwd))
-.PHONY: get_ips
-
-validate_user_ip: get_ips
-	@echo "------------------------------------------------------------------"
-	@echo "${YELLOW}Target: 'validate_user_ip'. Validate the user inputs.${COLOUR_OFF}"
-	@echo "------------------------------------------------------------------"
-	# INFO: Verify the user has provided a value for the key 'ENV' in ip/config.yaml
-	@[ "${ENV}" ] || ( echo "\nError: 'ENV' key is empty in ip/config.yaml\n"; exit 1 )
-.PHONY: validate_user_ip
+	@echo "${INFO}\nCalled makefile target 'clean'. Restoring the repository to its initial state.${COLOUR_OFF}\n"
 
 # Phony targets
-.PHONY: all deps install test clean
+.PHONY: all deps install run test clean
 
 # .PHONY tells Make that these targets don't represent files
 # This prevents conflicts with any files named "all" or "clean"
