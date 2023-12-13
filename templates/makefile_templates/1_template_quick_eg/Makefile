@@ -27,14 +27,14 @@ COLOUR_OFF := \033[0m # reset text color
 all: deps install clean
 
 deps:
-	@echo && echo "${INFO}Called makefile target 'deps'. Create virtualenv with required Python libs.${COLOUR_OFF}" && echo
+	@echo && echo "${INFO}Called makefile target 'deps'. Download any required libraries.${COLOUR_OFF}" && echo
 	@echo "deps called"
 
 install:
-	@echo && echo "${INFO}Called makefile target 'install'. Set up GX (Great Expectations) project.${COLOUR_OFF}" && echo
+	@echo && echo "${INFO}Called makefile target 'install'. Run the setup & install targs.${COLOUR_OFF}" && echo
 
 test:
-	@echo && echo "${INFO}Called makefile target 'test'. Set up GX (Great Expectations) project.${COLOUR_OFF}" && echo
+	@echo && echo "${INFO}Called makefile target 'test'. Perform any required tests.${COLOUR_OFF}" && echo
 
 clean:
 	@echo && echo "${INFO}Called makefile target 'clean'. Restoring the repository to its initial state.${COLOUR_OFF}" && echo
