@@ -14,9 +14,8 @@ get_ips:
 	$(eval ENV=$(shell yq -r '.general_params.env | select( . != null )' ${CONFIG_FILE}))
 
 validate_user_ip: get_ips
-	@echo "------------------------------------------------------------------"
-	@echo "${YELLOW}Target: 'validate_user_ip'. Validate the user inputs.${COLOUR_OFF}"
-	@echo "------------------------------------------------------------------"
+	@echo && echo "${INFO}Called makefile target 'validate_user_ip'. Validate the user inputs.${COLOUR_OFF}" && echo
+
 	# INFO: Verify the user has provided a value for the key 'env' in ip/config.yaml
 	@[ "${ENV}" ] || ( echo "\nError: 'ENV' key is empty in ip/config.yaml\n"; exit 1 )
 
@@ -29,6 +28,6 @@ validate_env_vars:
 	@./src/sh/validate_env_vars.sh config.yaml .env
 
 # Phony targets
-.PHONY: gen_env_template create_astro_project prompt_remove_directory generate_airflow_project_files copy_generated_airflow_files check_docker
+.PHONY: get_ips validate_user_ip gen_env_template validate_env_vars
 # .PHONY tells Make that these targets don't represent files
 # This prevents conflicts with any files named "all" or "clean"

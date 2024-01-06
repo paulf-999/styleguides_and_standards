@@ -3,7 +3,6 @@ SHELL = /bin/sh
 #================================================================
 # Usage
 #================================================================
-# make installations	# install the package for the first time, managing dependencies & performing a housekeeping cleanup too
 # make deps		# just install the dependencies
 # make install		# perform the end-to-end install
 # make clean		# perform a housekeeping cleanup
@@ -13,11 +12,11 @@ SHELL = /bin/sh
 #=======================================================================
 .EXPORT_ALL_VARIABLES:
 
+include src/make/variables.mk # load variables from a separate makefile file
+include src/make/setup.mk # load makefile setup targets from a separate makefile file
+
 CONFIG_FILE := config.yaml # input config file
 PIP_INSTALL_CMD=pip3 install -q --disable-pip-version-check
-
-# load variables from separate file
-include config.mk
 #=======================================================================
 # Targets
 #=======================================================================

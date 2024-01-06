@@ -13,6 +13,7 @@ SHELL = /bin/sh
 .EXPORT_ALL_VARIABLES:
 
 include src/make/variables.mk # load variables from a separate makefile file
+include src/make/setup.mk # load makefile setup targets from a separate makefile file
 
 CONFIG_FILE := config.yaml
 PIP_INSTALL_CMD=pip3 install -q --disable-pip-version-check
