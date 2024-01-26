@@ -48,15 +48,3 @@ validation_input_args() {
         exit 1
     fi
 }
-
-#=======================================================================
-# Main script logic
-#=======================================================================
-print_info_message "Script execution started."
-
-# Call functions if needed
-validation_input_args
-
-# TODO: add your code here
-
-print_info_message "Script execution completed."
